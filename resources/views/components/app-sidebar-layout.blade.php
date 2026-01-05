@@ -23,14 +23,6 @@
 
             <!-- Nav -->
             <nav class="px-3 pb-6 space-y-1">
-                <a href="{{ route('dashboard') }}"
-                   class="flex items-center gap-2 px-3 py-2 rounded-md text-sm
-                          hover:bg-white/5 transition
-                          {{ request()->routeIs('dashboard') ? 'bg-white/10 text-white' : '' }}">
-                    <span>🏠</span>
-                    <span>Dashboard</span>
-                </a>
-
                 <a href="{{ route('notes.index') }}"
                 class="flex items-center gap-2 px-3 py-2 rounded-md text-sm
                         hover:bg-white/5 transition

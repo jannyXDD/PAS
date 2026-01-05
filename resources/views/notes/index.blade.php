@@ -20,43 +20,31 @@
     <!-- A tua tabela cyan -->
     <div class="bg-sky-900/80 overflow-hidden shadow-sm rounded-lg">
         <div class="p-6 overflow-x-auto">
-
-            <table class="min-w-full divide-y divide-white/10">
-                <thead class="bg-sky-950/70">
-                    <tr>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-sky-100 uppercase tracking-wider">Title</th>
-                        <th class="px-4 py-3 text-right text-xs font-semibold text-sky-100 uppercase tracking-wider">Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody class="bg-sky-800/30 divide-y divide-white/10">
-                    @forelse($notes as $note)
-                        <tr class="hover:bg-sky-800/40 transition">
-                            <td class="px-4 py-3 text-sm font-semibold text-white">{{ $note->title }}</td>
-                            <td class="px-4 py-3">
-                                <div class="flex justify-end gap-3 text-sm">
-                                    <a href="{{ route('notes.show', $note) }}" class="text-indigo-300 hover:underline">Show</a>
-                                    <a href="{{ route('notes.edit', $note) }}" class="text-sky-100 hover:underline">Edit</a>
-
-                                    <form action="{{ route('notes.destroy', $note) }}" method="POST" onsubmit="return confirm('Delete this note?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-400 hover:underline">Delete</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="3" class="px-4 py-10 text-center text-sky-200">
-                                No notes yet. Create your first one 🙂
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                
+                @forelse($notes as $note)
+                    <a href="{{ route('notes.show', $note) }}"
+                         class="bg-sky-900/60 border border-white/10 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        
+                        <!-- Título -->
+                        <h3 class="text-lg font-semibold text-white mb-4 truncate">
+                            {{ $note->title }}
+                        </h3>
+                        <p class="text-gray-400 line-clamp-4 mb-6 break-words">
+                            {{ $note->content }}
+                        </p>
+                    </a>
+                        
+                    
+                @empty
+                    <div class="col-span-full text-center text-sky-200 py-12">
+                        No notes yet. Create your first one 🙂
+                    </div>
+                @endforelse
+            </div>
+            
         </div>
+        
     </div>
 
 </x-app-sidebar-layout>
