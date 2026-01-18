@@ -26,6 +26,7 @@ The application allows authenticated users to manage their own notes, while admi
 - Blade (templating engine)
 - MySQL (database)
 - Tailwind CSS
+- Postman
 
 ## Road map
 
