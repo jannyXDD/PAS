@@ -1,66 +1,66 @@
 <x-app-sidebar-layout title="Notes">
 
-    @if (session('success'))
-        <div class="mb-4 rounded-md bg-green-50 dark:bg-green-900/30 p-4 text-green-800 dark:text-green-200">
-            {{ session('success') }}
+    <div class="p-6">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h1 class="text-xl font-semibold text-slate-800">
+                    Notes
+                </h1>
+                <p class="text-sm text-slate-500">
+                    Manage notes
+                </p>
+            </div>
+
         </div>
-    @endif
+            <form method="GET" action="{{ route('admin.notes.index') }}" class="mb-4">
+                    <input name="q" value="{{ request('q') }}" placeholder="Search by note ID / user email / user name..."
+                    class="w-full max-w-md rounded border px-3 py-2">
+                </form>
 
-    <div class="flex items-center justify-between mb-4">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Notes
-        </h2>
-
-        <a href="{{ route('notes.create') }}"
-           class="inline-flex items-center px-4 py-2 bg-indigo-600 dark:bg-indigo-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 dark:hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition">
-            Create Note
-        </a>
-    </div>
-
-    <!-- A tua tabela cyan -->
-    <div class="bg-sky-900/80 overflow-hidden shadow-sm rounded-lg">
-        <div class="p-6 overflow-x-auto">
-
-            <table class="min-w-full divide-y divide-white/10">
-                <thead class="bg-sky-950/70">
-                    <tr>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-sky-100 uppercase tracking-wider">ID</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-sky-100 uppercase tracking-wider">Title</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-sky-100 uppercase tracking-wider">User</th>
-                        <th class="px-4 py-3 text-right text-xs font-semibold text-sky-100 uppercase tracking-wider">Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody class="bg-sky-800/30 divide-y divide-white/10">
-                    @forelse($notes as $note)
-                        <tr class="hover:bg-sky-800/40 transition">
-                            <td class="px-4 py-3 text-sm font-semibold text-sky-50">{{ $note->id }}</td>
-                            <td class="px-4 py-3 text-sm font-semibold text-white">{{ $note->title }}</td>
-                            <td class="px-4 py-3 text-sm font-semibold text-white">{{ $note->user->name }}</td>
-                            <td class="px-4 py-3">
-                                <div class="flex justify-end gap-3 text-sm">
-                                    <a href="{{ route('notes.show', $note) }}" class="text-indigo-300 hover:underline">Show</a>
-                                    <a href="{{ route('notes.edit', $note) }}" class="text-sky-100 hover:underline">Edit</a>
-
-                                    <form action="{{ route('notes.destroy', $note) }}" method="POST" onsubmit="return confirm('Delete this note?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-400 hover:underline">Delete</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @empty
+        <div class="overflow-x-auto rounded border">
+                <table class="w-full">
+                    <thead class="bg-slate-700 text-slate-100">
                         <tr>
-                            <td colspan="3" class="px-4 py-10 text-center text-sky-200">
-                                No notes yet. Create your first one 🙂
-                            </td>
+                            <th class="text-left p-3">ID</th>
+                            <th class="text-left p-3">Title</th>
+                            <th class="text-left p-3">User</th>
+                            <th class="text-right p-3">Actions</th>
                         </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
 
-        </div>
-    </div>
+                    <tbody class="divide-y divide-slate-200">
+                        @forelse($notes as $note)
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="px-4 py-3 text-sm font-medium text-slate-800">{{ $note->id }}</td>
+                                <td class="px-4 py-3 text-sm font-semibold text-slate-800">{{ $note->title }}</td>
+                                <td class="px-4 py-3 text-sm text-slate-800">{{ $note->user->name }}</td>
+                                <td class="p-3 text-right">
+                                        <a href="{{ route('admin.notes.show', $note) }}" class="bg-emerald-600 text-white px-3 py-1 rounded
+                                 hover:bg-emerald-800 transition-colors duration-200">Show</a>
+                                        <a href="{{ route('admin.notes.edit', $note) }}" class="bg-blue-600 text-white px-3 py-1 rounded
+                                 hover:bg-blue-800 transition-colors duration-200">Edit</a>
+                                        <form class="inline"
+                                        action="{{ route('admin.notes.destroy', $note) }}" method="POST" onsubmit="return confirm('Delete this note?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded
+                                 hover:bg-red-900 transition-colors duration-200">Delete</button>
+                                        </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="3" class="px-4 py-10 text-center text-sky-200">
+                                    No notes yet. Create your first one
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+
+                </div>
+            <div class="mt-6 flex justify-end">
+                {{ $notes->links() }}
+            </div>
 
 </x-app-sidebar-layout>

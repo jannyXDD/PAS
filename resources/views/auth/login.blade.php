@@ -3,8 +3,8 @@
     <x-auth-session-status class="mb-4 text-emerald-300" :status="session('status')" />
 
     <div class="mb-6">
-        <h1 class="text-2xl font-semibold">Welcome back</h1>
-        <p class="text-sm text-slate-300 mt-1">Sign in to continue</p>
+        <h1 class="text-2xl text-slate-100 font-semibold text-center ">Notes100</h1>
+         <!-- <p class="text-sm text-slate-300 mt-1">Login</p> -->
     </div>
 
     <form method="POST" action="{{ route('login') }}" class="space-y-5">
@@ -15,8 +15,8 @@
             <x-input-label for="email" value="Email" class="text-slate-300" />
             <x-text-input
                 id="email"
-                class="block mt-1 w-full bg-white/5 border-white/10 text-slate-100
-                       focus:border-sky-500 focus:ring-sky-500"
+                class="block mt-1 w-full bg-slate-700 border-slate-600 text-slate-100
+                       focus:border-indigo-500 focus:ring-indigo-500"
                 type="email"
                 name="email"
                 :value="old('email')"
@@ -31,8 +31,8 @@
             <x-input-label for="password" value="Password" class="text-slate-300" />
             <x-text-input
                 id="password"
-                class="block mt-1 w-full bg-white/5 border-white/10 text-slate-100
-                       focus:border-sky-500 focus:ring-sky-500"
+                class="block mt-1 w-full bg-slate-700 border-slate-600 text-slate-100
+                       focus:border-indigo-500 focus:ring-indigo-500"
                 type="password"
                 name="password"
                 required
@@ -42,13 +42,14 @@
 
         <!-- Remember -->
         <div class="flex items-center justify-between text-sm">
-            <label class="inline-flex items-center gap-2 text-slate-300">
-                <input type="checkbox" name="remember" class="rounded bg-white/5 border-white/10">
+            <label class="inline-flex items-center gap-2 text-slate-100">
+                <input type="checkbox" name="remember" class="accent-indigo-500 rounded bg-white/5 border-white/10
+                       focus:ring-2 focus:ring-sky-500">
                 Remember me
             </label>
 
             @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}" class="text-sky-300 hover:text-sky-200">
+                <a href="{{ route('password.request') }}" class="text-white-300 hover:text-sky-200">
                     Forgot password?
                 </a>
             @endif
@@ -58,4 +59,12 @@
             Log in
         </x-primary-button>
     </form>
+        <div class="flex items-center justify-between text-sm">
+            @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="text-slate-400 hover:text-indigo-400 text-decoration underline">
+                    Don't have an account? Click here to register.
+                </a>
+            @endif
+        </div>
+
 </x-guest-layout>

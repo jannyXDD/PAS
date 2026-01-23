@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('content');
 
 
-            $table->boolean('is_urgent')->default(false);
+            $table->boolean('is_pinned')->default(false);
             
             $table->foreignId('user_id')->constrained();
 

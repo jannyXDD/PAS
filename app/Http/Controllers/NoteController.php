@@ -11,21 +11,29 @@ class NoteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-    
-        $notes = \App\Models\Note::query()
-            ->where('user_id', Auth::id())
-            ->latest()
-            ->paginate(10);
+        $q = $request->query('q');
 
-        return view('notes.index', compact('notes'));
-              
+        $notes = Note::query()
+            ->where('user_id', Auth::id())
+            ->when($q, function ($query) use ($q) {
+                $query->where(function ($qq) use ($q) {
+                    $qq->where('title', 'like', "%{$q}%");
+                });
+            })
+            ->orderByDesc('is_pinned')
+            ->latest()
+            ->paginate(50)
+            ->withQueryString();
+
+        return view('notes.index', compact('notes', 'q'));
+
     }
 
     public function adminIndex()
     {
-        $notes = Note::latest()->paginate(10);
+        $notes = Note::latest()->paginate(50);
         return view('notes.admin', compact('notes'));
     }
 
@@ -47,16 +55,16 @@ class NoteController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'is_urgent' => 'required'
+            'is_pinned' => 'nullable|boolean'
         ]);
 
+        $validated['is_pinned'] = $request->has('is_pinned');
 
         $request->user()->notes()->create($validated);
 
-        return redirect()->route('notes.index')->with('success', 'Note created successfully.');       
-        dd($request->all());
-        
-
+        return redirect()
+        ->route('notes.index')
+        ->with('success', 'Note created successfully.');
         
     }
 
@@ -86,8 +94,11 @@ class NoteController extends Controller
         //
         $validated = $request->validate([
             'title' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'is_pinned' => 'nullable|boolean'
         ]);
+        
+        $validated['is_pinned'] = $request->has('is_pinned');
 
         $note->update($validated);
 

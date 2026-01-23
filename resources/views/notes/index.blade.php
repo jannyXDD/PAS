@@ -5,46 +5,63 @@
             {{ session('success') }}
         </div>
     @endif
-
-    <div class="flex items-center justify-between mb-4">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Notes
-        </h2>
-
-        <a href="{{ route('notes.create') }}"
-           class="inline-flex items-center px-4 py-2 bg-indigo-600 dark:bg-indigo-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 dark:hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition">
-            Create Note
-        </a>
-    </div>
-
-    <!-- A tua tabela cyan -->
-    <div class="bg-sky-900/80 overflow-hidden shadow-sm rounded-lg">
-        <div class="p-6 overflow-x-auto">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                
-                @forelse($notes as $note)
-                    <a href="{{ route('notes.show', $note) }}"
-                         class="bg-sky-900/60 border border-white/10 rounded-xl p-5 shadow hover:shadow-lg transition">
-                        
-                        <!-- Título -->
-                        <h3 class="text-lg font-semibold text-white mb-4 truncate">
-                            {{ $note->title }}
-                        </h3>
-                        <p class="text-gray-400 line-clamp-4 mb-6 break-words">
-                            {{ $note->content }}
-                        </p>
-                    </a>
-                        
-                    
-                @empty
-                    <div class="col-span-full text-center text-sky-200 py-12">
-                        No notes yet. Create your first one 🙂
-                    </div>
-                @endforelse
-            </div>
-            
+          <div class="p-6">
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <h1 class="text-xl font-semibold text-slate-800">
+                All notes
+            </h1>
         </div>
-        
+            <a href="{{ route('notes.create') }}"
+               class="px-4 py-2 bg-indigo-600 rounded hover:bg-indigo-700 text-white text-sm font-semibold transition shadow-sm">
+                Create Note
+            </a>
+            </div>
+                <form method="GET" action="{{ route('notes.index') }}" class="mb-4">
+                    <input name="q" value="{{ request('q') }}" placeholder="Search by title..." 
+                        class="w-full max-w-md rounded border px-3 py-2">
+                </form>
+            <p class="text-sm text-gray-400 mt-2"></p>
+        {{-- Wrapper geral: grid scroll + botão fixo --}}
+        <div class="flex flex-col h-[calc(100vh-170px)]">
+            
+        {{-- Área das notas (scroll vertical aqui) --}}
+        <div class="flex-1 overflow-y-auto pr-2">
+            <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm
+            hover:shadow-md transition">
+                <div class="p-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+                        
+                        @forelse($notes as $note)
+                            @if($note->is_pinned)
+                                <a href="{{ route('notes.show', $note) }}" class="bg-white border-l-4 border-indigo-400 rounded-xl p-4 shadow-sm hover:shadow-md transition ">
+                                <h3 class="text-lg text-slate-800  font-semibold mb-4 truncate flex items-center gap-2">
+                                    <span title="Nota fixa">📌</span>
+                                    @else
+                                    <a href="{{ route('notes.show', $note) }}"
+                                        class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm
+                                        hover:shadow-md transition ">
+                                    <h3 class="text-lg text-slate-800 font-semibold mb-4 truncate flex items-center gap-2">
+                                    @endif
+                                    {{ $note->title }}
+                                </h3>
+                                <p class="text-slate-500 text-sm line-clamp-4 mb-6 break-words">
+                                    {{ $note->content }}
+                                </p>
+   
+                            </a>
+                        @empty
+                            <div class="col-span-full text-center text-sky-200 py-12">
+                                No notes yet. Create your first one 🙂
+                            </div>
+                        @endforelse
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 </x-app-sidebar-layout>

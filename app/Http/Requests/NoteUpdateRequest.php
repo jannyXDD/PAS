@@ -24,7 +24,7 @@ class NoteUpdateRequest extends FormRequest
         return [
             'title' => ['required', 'max:70'],
             'content' => ['required'],
-            'is_urgent' => ['required']
+            'is_pinned' => ['required']
         ];
     }
 }

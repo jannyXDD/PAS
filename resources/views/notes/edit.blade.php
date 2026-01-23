@@ -46,19 +46,19 @@
                     @enderror
                 </div>
 
-                {{-- URGENCY (FIXED) --}}
+                {{-- PINNED (FIXED) --}}
                 <div class="mt-6">
-                    <p class="text-sm font-medium text-slate-200 mb-2">Is urgent?</p>
+                    <p class="text-sm font-medium text-slate-200 mb-2">Is pinned?</p>
 
                     <div class="inline-flex w-fit overflow-hidden rounded-lg border border-white/10 bg-white/5">
                         {{-- Normal --}}
                         <label class="relative cursor-pointer select-none">
                             <input
                                 type="radio"
-                                name="is_urgent"
+                                name="is_pinned"
                                 value="0"
                                 class="peer sr-only"
-                                {{ old('is_urgent', (int) $note->is_urgent) === 0 ? 'checked' : '' }}
+                                {{ old('is_pinned', (int) $note->is_pinned) === 0 ? 'checked' : '' }}
                             >
                             <span class="block px-6 py-2 text-sm font-semibold text-center text-slate-200
                                          hover:bg-white/10 transition
@@ -67,24 +67,24 @@
                             </span>
                         </label>
 
-                        {{-- Urgent --}}
+                        {{-- Pinned --}}
                         <label class="relative cursor-pointer select-none">
                             <input
                                 type="radio"
-                                name="is_urgent"
+                                name="is_pinned"
                                 value="1"
                                 class="peer sr-only"
-                                {{ old('is_urgent', (int) $note->is_urgent) === 1 ? 'checked' : '' }}
+                                {{ old('is_pinned', (int) $note->is_pinned) === 1 ? 'checked' : '' }}
                             >
                             <span class="block px-6 py-2 text-sm font-semibold text-center text-slate-200
                                          hover:bg-white/10 transition
                                          peer-checked:bg-red-600 peer-checked:text-white">
-                                Urgent
+                                Pinned
                             </span>
                         </label>
                     </div>
 
-                    @error('is_urgent')
+                    @error('is_pinned')
                         <p class="mt-2 text-sm text-red-400">{{ $message }}</p>
                     @enderror
                 </div>

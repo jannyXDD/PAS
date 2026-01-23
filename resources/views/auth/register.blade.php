@@ -1,12 +1,16 @@
 <x-guest-layout>
+
+    <div class="mb-6">
+        <h1 class="text-2xl font-semibold text-center">Notes100</h1>
+    </div>
     <form method="POST" action="{{ route('register') }}" class="space-y-5">
         @csrf
-
         <div>
-            <x-input-label for="name" :value="__('Name')" class="text-slate-200" />
+            <x-input-label for="name" :value="__('Name')" class="text-slate-300" />
             <x-text-input
                 id="name"
-                class="mt-1 block w-full bg-white/5 border-white/10 text-slate-100 placeholder:text-slate-400 focus:border-sky-500 focus:ring-sky-500"
+                class="block mt-1 w-full bg-slate-700 border-slate-600 text-slate-100
+                       focus:border-indigo-500 focus:ring-indigo-500"
                 type="text"
                 name="name"
                 :value="old('name')"
@@ -18,10 +22,11 @@
         </div>
 
         <div>
-            <x-input-label for="email" :value="__('Email')" class="text-slate-200" />
+            <x-input-label for="email" :value="__('Email')" class="text-slate-300" />
             <x-text-input
                 id="email"
-                class="mt-1 block w-full bg-white/5 border-white/10 text-slate-100 placeholder:text-slate-400 focus:border-sky-500 focus:ring-sky-500"
+                class="block mt-1 w-full bg-slate-700 border-slate-600 text-slate-100
+                       focus:border-indigo-500 focus:ring-indigo-500"
                 type="email"
                 name="email"
                 :value="old('email')"
@@ -32,10 +37,10 @@
         </div>
 
         <div>
-            <x-input-label for="password" :value="__('Password')" class="text-slate-200" />
+            <x-input-label for="password" :value="__('Password')" class="text-slate-300" />
             <x-text-input
                 id="password"
-                class="mt-1 block w-full bg-white/5 border-white/10 text-slate-100 placeholder:text-slate-400 focus:border-sky-500 focus:ring-sky-500"
+                class="mt-1 block w-full bg-slate-700 border-slate-600 text-slate-100 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-indigo-500"
                 type="password"
                 name="password"
                 required
@@ -45,10 +50,10 @@
         </div>
 
         <div>
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="text-slate-200" />
+            <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="text-slate-300" />
             <x-text-input
                 id="password_confirmation"
-                class="mt-1 block w-full bg-white/5 border-white/10 text-slate-100 placeholder:text-slate-400 focus:border-sky-500 focus:ring-sky-500"
+                class="mt-1 block w-full bg-slate-700 border-slate-600 text-slate-100 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-indigo-500"
                 type="password"
                 name="password_confirmation"
                 required
@@ -58,14 +63,15 @@
         </div>
 
         <div class="flex items-center justify-end gap-3 pt-2">
-            <a class="text-sm text-slate-300 hover:text-white transition" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <button type="submit"
-                class="inline-flex items-center px-5 py-2 rounded-md bg-sky-600 text-white font-semibold hover:bg-sky-500 transition">
+            <x-primary-button type="submit"
+                class="w-full justify-center bg-indigo-600 hover:bg-indigo-500">
                 {{ __('Register') }}
-            </button>
+            </x-primary-button>
+        </div>
+        <div>
+            <a class="text-sm text-slate-400 hover:text-indigo-400 transition text-decoration underline" href="{{ route('login') }}">
+                {{ __('Already registered? Click here to login.') }}
+            </a>
         </div>
     </form>
 </x-guest-layout>

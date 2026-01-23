@@ -1,79 +1,61 @@
 @props(['title' => null])
 @vite(['resources/css/app.css', 'resources/js/app.js'])
-<div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+
+<div class="min-h-screen bg-slate-50">
     <div class="flex">
 
         <!-- SIDEBAR -->
-        <aside class="w-64 shrink-0 min-h-screen bg-slate-950 text-slate-200">
+        <aside class="fixed left-0 top-0 h-screen w-80 bg-slate-800 text-slate-100">
             <!-- Logo / Title -->
-            <div class="h-16 flex items-center px-6 border-b border-white/10">
-                <span class="font-bold tracking-wide">Admin Pro</span>
+            <div class="h-16 bg-slate-800 text-slate-100 flex items-center px-6 border-b border-white/10">
+                <span class="font-bold tracking-wide text-xl">Notes100</span>
             </div>
 
             
             <!-- Search -->
-            <div class="px-4 py-4">
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    class="w-full rounded-md bg-white/5 border border-white/10 px-3 py-2 text-sm
-                           placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
-                >
+            <div class="pt-4 px-3">
+                <p class="px-3 text-sm uppercase tracking-wider text-slate-400">My Area</p>
             </div>
 
             <!-- Nav -->
-            <nav class="px-3 pb-6 space-y-1">
+            <nav class="relative z-30 px-3 pb-6 space-y-1">
                 <a href="{{ route('notes.index') }}"
-                class="flex items-center gap-2 px-3 py-2 rounded-md text-sm
-                        hover:bg-white/5 transition
+                class="mt-2 flex items-center gap-2 px-3 py-2 rounded-md text-s hover:bg-white/5 transition
                         {{ request()->routeIs('notes.*') ? 'bg-white/10 text-white' : '' }}">
                     <span>📝</span>
                     <span>My Notes</span>
                 </a>
 
+                <!-- Exemplo de secção -->
                 @if(auth()->check() && auth()->user()->is_admin)
+                <div class="pt-4">
+                    <p class="px-3 text-sm uppercase tracking-wider text-slate-400">Admin Area</p>
+                    
+                    <a href="{{ route('admin.users.index') }}"
+                       class="mt-2 flex items-center gap-2 px-3 py-2 rounded-md text-s hover:bg-white/5 transition
+                            {{ request()->routeIs('admin.users.*') ? 'bg-white/10 text-white' : '' }}">
+                        <span>👥</span>
+                        <span>Users</span>
+                    </a>
+                 </div>
                     <a href="{{ route('admin.notes.index') }}"
-                    class="flex items-center gap-2 px-3 py-2 rounded-md text-sm
-                            hover:bg-white/5 transition
+                        class="mt-2 flex items-center gap-2 px-3 py-2 rounded-md text-s hover:bg-white/5 transition
                             {{ request()->routeIs('admin.notes.*') ? 'bg-white/10 text-white' : '' }}">
                         <span>🗂️</span>
                         <span>All Notes</span>
                     </a>
                 @endif
-
-                <!-- Exemplo de secção -->
-                <div class="pt-4">
-                    <p class="px-3 text-xs uppercase tracking-wider text-slate-400">Extras</p>
-
-                    <a href="#"
-                       class="mt-2 flex items-center gap-2 px-3 py-2 rounded-md text-sm hover:bg-white/5 transition">
-                        <span>👥</span>
-                        <span>Team</span>
-                    </a>
-
-                    <a href="#"
-                       class="flex items-center gap-2 px-3 py-2 rounded-md text-sm hover:bg-white/5 transition">
-                        <span>📁</span>
-                        <span>Projects</span>
-                    </a>
-
-                    <a href="#"
-                       class="flex items-center gap-2 px-3 py-2 rounded-md text-sm hover:bg-white/5 transition">
-                        <span>📅</span>
-                        <span>Calendar</span>
-                    </a>
-                </div>
             </nav>
         </aside>
 
         <!-- CONTENT AREA -->
-        <div class="flex-1 min-w-0">
+        <div class="ml-80 min-h-screen flex-1 flex flex-col">
 
-            <!-- TOP BAR -->
-            <header class="h-16 flex items-center justify-between px-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+            <!-- TOP BAR bg-sky-800/30 divide-y divide-white/10    h-16 flex items-center justify-between px-6 bg-white dark:bg-sky-900/60-->
+            <header class="h-16 flex items-center justify-between px-6 bg-slate-700 text-white divide-y divide-white/10">
                 <div class="flex items-center gap-3">
                     @if($title)
-                        <h1 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{{ $title }}</h1>
+                        <h1 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $title }}</h1>
                     @endif
                 </div>
 
