@@ -71,7 +71,7 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 ## 📱 Android Application
 
 
-The Android app consumes the Laravel API and mirrors the main web functionalities on mobile.
+The Android app consumes the Laravel API and mirrors the main web functionalities for a normal user on mobile.
 
 
 ### Authentication
