@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\NoteController;
+use App\Http\Controllers\Api\UserController;
 
 
 Route::post('/auth/register', [AuthController::class, 'register']);
@@ -15,6 +16,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', function (Request $request) {
         return response()->json($request->user());
     });
+    Route::put('/me', [UserController::class, 'update']);
+    
    Route::apiResource('notes', NoteController::class)
         ->names('api.notes');
     });
