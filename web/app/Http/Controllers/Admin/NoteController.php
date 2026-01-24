@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
-    /**
-     * Mostrar TODAS as notas (de todos os utilizadores)
-     */
     public function index(Request $request)
     {
         $q = $request->input('q');

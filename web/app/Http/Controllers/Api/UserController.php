@@ -25,7 +25,6 @@ class UserController extends Controller
         $user->name  = $request->name;
         $user->email = $request->email;
 
-        // mudar password só se vier current_password
         if ($request->filled('current_password')) {
 
             if (!Hash::check($request->current_password, $user->password)) {

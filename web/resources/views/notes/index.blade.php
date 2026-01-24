@@ -22,10 +22,10 @@
                         class="w-full max-w-md rounded border px-3 py-2">
                 </form>
             <p class="text-sm text-gray-400 mt-2"></p>
-        {{-- Wrapper geral: grid scroll + botão fixo --}}
+        {{-- Wrapper --}}
         <div class="flex flex-col h-[calc(100vh-170px)]">
             
-        {{-- Área das notas (scroll vertical aqui) --}}
+        {{-- Content --}}
         <div class="flex-1 overflow-y-auto pr-2">
             <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm
             hover:shadow-md transition">

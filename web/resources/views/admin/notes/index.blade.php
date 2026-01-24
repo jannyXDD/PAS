@@ -1,6 +1,8 @@
 <x-app-sidebar-layout title="Notes">
 
     <div class="p-6">
+
+        {{-- Header --}}
         <div class="flex items-center justify-between mb-6">
             <div>
                 <h1 class="text-xl font-semibold text-slate-800">
@@ -10,15 +12,17 @@
                     Manage notes
                 </p>
             </div>
-
+        {{-- Search form --}}
         </div>
             <form method="GET" action="{{ route('admin.notes.index') }}" class="mb-4">
                     <input name="q" value="{{ request('q') }}" placeholder="Search by note ID / user email / user name..."
                     class="w-full max-w-md rounded border px-3 py-2">
                 </form>
-
+        {{-- Wrapper --}}
         <div class="overflow-x-auto rounded border">
+            {{-- Notes table --}}
                 <table class="w-full">
+                    {{-- Table header --}}
                     <thead class="bg-slate-700 text-slate-100">
                         <tr>
                             <th class="text-left p-3">ID</th>
@@ -27,7 +31,7 @@
                             <th class="text-right p-3">Actions</th>
                         </tr>
                     </thead>
-
+                    {{-- Table body --}}
                     <tbody class="divide-y divide-slate-200">
                         @forelse($notes as $note)
                             <tr class="hover:bg-slate-50 transition">

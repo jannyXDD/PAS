@@ -19,7 +19,7 @@
                     Back
                 </a>
 
-                {{-- DELETE (fora do form de update) --}}
+                {{-- Delete --}}
                 <button type="submit"
                         form="delete-note-{{ $note->id }}"
                         class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition">
@@ -28,10 +28,10 @@
             </div>
         </div>
 
-        {{-- Conteúdo --}}
+        {{-- Content --}}
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-            {{-- FORM UPDATE --}}
+            {{-- Form --}}
             <form action="{{ route('notes.update', $note) }}"
                   method="POST"
                   class="lg:col-span-2 bg-white border border-slate-200 rounded-xl shadow-sm">
@@ -40,7 +40,7 @@
 
                 <div class="p-6 space-y-6">
 
-                    {{-- Título --}}
+                    {{-- Title --}}
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">
                             Title
@@ -51,7 +51,7 @@
                                class="w-full rounded-lg text-gray-600 border-slate-300 focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
 
-                    {{-- Conteúdo --}}
+                    {{-- Content --}}
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">
                             Content
@@ -84,7 +84,7 @@
                 </div>
             </form>
 
-            {{-- DETALHES --}}
+            {{-- Details --}}
             <div class="bg-slate-100 border border-slate-200 rounded-xl shadow-sm h-fit">
                 <div class="p-6 space-y-4">
                     <h2 class="text-sm font-semibold text-slate-700 uppercase tracking-wide">
@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    {{-- FORM DELETE (SEPARADO, INVISÍVEL) --}}
+    {{-- FORM DELETE --}}
     <form id="delete-note-{{ $note->id }}"
           action="{{ route('notes.destroy', $note) }}"
           method="POST"

@@ -1,7 +1,7 @@
 <x-app-sidebar-layout title="Ver Nota">
 
     <div class="p-6 max-w-6xl mx-auto">
-
+        {{-- Header --}}
         <div class="flex items-center justify-between mb-6">
             <div>
                 <h1 class="text-2xl font-semibold text-slate-900">
@@ -17,9 +17,9 @@
                 Back
             </a>
         </div>
-
+        {{-- Content --}}
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
+        {{-- FORM UPDATE --}}
             <form action="{{ route('notes.update', $note) }}"
                   method="POST"
                   class="lg:col-span-2 bg-white border border-slate-200 rounded-xl shadow-sm">
@@ -27,7 +27,7 @@
                 @method('PUT')
 
                 <div class="p-6 space-y-6">
-
+                    {{-- Title --}}
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">
                             Title
@@ -38,7 +38,7 @@
                                value="{{ old('title', $note->title) }}"
                                class="w-full rounded-lg text-gray-600 border-slate-300 focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
-
+                    {{-- Content --}}
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">
                             Content
@@ -48,7 +48,7 @@
                                   rows="8"
                                   class="w-full rounded-lg text-gray-600 border-slate-300 focus:border-indigo-500 focus:ring-indigo-500">{{ old('content', $note->content) }}</textarea>
                     </div>
-
+                    {{-- Pin --}}
                     <div class="flex items-center gap-2">
                         <input type="checkbox"
                                name="is_pinned"
@@ -62,7 +62,7 @@
                     </div>
 
                 </div>
-
+                {{-- Footer --}}
                 <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex justify-end rounded-b-xl">
                     <button type="submit"
                             class="px-6 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition">
@@ -70,7 +70,7 @@
                     </button>
                 </div>
             </form>
-
+            {{-- Details --}}
             <div class="bg-slate-100 border border-slate-200 rounded-xl shadow-sm h-fit">
                 <div class="p-6 space-y-4">
                     <h2 class="text-sm font-semibold text-slate-700 uppercase tracking-wide">

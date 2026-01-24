@@ -1,18 +1,19 @@
 <x-app-sidebar-layout>
     <div class="py-8">
+            {{-- Content --}}
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
 
-            {{-- TÍTULO DA PÁGINA (visível sempre) --}}
+            {{-- Title --}}
             <div class="mb-6">
                 <h1 class="text-2xl font-semibold text-gray-800">Criar Nota</h1>
                 <p class="text-sm text-gray-500">Cria uma nova nota</p>
             </div>
 
-            {{-- CARD --}}
+            {{-- Card --}}
             <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                {{-- Form --}}
                 <form action="{{ route('notes.store') }}" method="POST" class="p-6 space-y-6">
-                    @csrf
-
+                    @csrf  
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Título</label>
                         <input type="text" name="title" value="{{ old('title') }}"
@@ -31,7 +32,7 @@
                                class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                         <label class="text-sm text-gray-700">Fixar nota 📌</label>
                     </div>
-
+                     {{-- Form actions --}}
                     <div class="flex justify-end gap-3 pt-4">
                         <a href="{{ route('notes.index') }}"
                            class="px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100 transition">

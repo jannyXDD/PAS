@@ -18,6 +18,6 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::put('/me', [UserController::class, 'update']);
     
-   Route::apiResource('notes', NoteController::class)
+    Route::apiResource('notes', NoteController::class)
         ->names('api.notes');
     });

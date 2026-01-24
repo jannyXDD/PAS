@@ -51,7 +51,7 @@
         <!-- CONTENT AREA -->
         <div class="ml-80 min-h-screen flex-1 flex flex-col">
 
-            <!-- TOP BAR bg-sky-800/30 divide-y divide-white/10    h-16 flex items-center justify-between px-6 bg-white dark:bg-sky-900/60-->
+            <!-- TOP BAR -->
             <header class="h-16 flex items-center justify-between px-6 bg-slate-700 text-white divide-y divide-white/10">
                 <div class="flex items-center gap-3">
                     @if($title)
@@ -64,7 +64,7 @@
                     <button
                         type="button"
                         @click="open = !open"
-                        class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200 hover:opacity-90"
+                        class="flex items-center text-sm font-medium text-gray-300 hover:text-white "
                     >
                         <span>{{ Auth::user()->name }}</span>
                         <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
