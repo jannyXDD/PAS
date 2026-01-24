@@ -15,6 +15,11 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 
 ---
 
+## 🗄️ Database Design
+
+<img width="475" height="307" alt="image" src="https://github.com/user-attachments/assets/abf6822b-c082-44b6-83f0-16112c701283" />
+
+---
 
 ## 🌐 Web Application (Laravel)
 
