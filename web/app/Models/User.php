@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Note::class);
     }
+
+    public function folders()
+    {
+        return $this->hasMany(Folder::class);
+    }
 }

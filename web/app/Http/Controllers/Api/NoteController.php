@@ -26,6 +26,7 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
+        
           $user = $request->user();
            if (!$user) {
                 return response()->json(['message' => 'Unauthenticated'], 401);
@@ -43,8 +44,7 @@ class NoteController extends Controller
             'content' => $data['content'] ?? null,
             'is_pinned' => $data['is_pinned'] ?? false,
          ]);
-
-    return response()->json($note, 201);
+        return response()->json($note, 201);
     }
 
     /**
@@ -74,9 +74,11 @@ class NoteController extends Controller
             'title'     => ['sometimes', 'required', 'string', 'max:255'],
             'content'   => ['nullable', 'string'],
             'is_pinned' => ['sometimes', 'boolean'],
+            
         ]);
 
         $note->update($data);
+        
 
         return response()->json($note, 200);
     }

@@ -17,8 +17,10 @@
                 Create Note
             </a>
             </div>
-                <form method="GET" action="{{ route('notes.index') }}" class="mb-4">
-                    <input name="q" value="{{ request('q') }}" placeholder="Search by title..." 
+                <form method="GET"
+                    action="{{ isset($folder) ? route('notes.byFolder', $folder) : route('notes.index') }}"
+                    class="mb-4">
+                    <input name="q" value="{{ request('q') }}" placeholder="Search by title..."
                         class="w-full max-w-md rounded border px-3 py-2">
                 </form>
             <p class="text-sm text-gray-400 mt-2"></p>

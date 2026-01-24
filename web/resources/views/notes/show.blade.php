@@ -39,7 +39,24 @@
                 @method('PUT')
 
                 <div class="p-6 space-y-6">
+                    {{-- Folder --}}
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">
+                            Pasta
+                        </label>
 
+                        <select name="folder_id"
+                            class="w-full rounded-lg text-gray-600 border-slate-300 focus:border-indigo-500 focus:ring-indigo-500">
+                            <option value="">— Sem pasta —</option>
+
+                            @foreach($folders as $folder)
+                                <option value="{{ $folder->id }}"
+                                    {{ old('folder_id', $note->folder_id) == $folder->id ? 'selected' : '' }}>
+                                    {{ $folder->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                     {{-- Title --}}
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1">

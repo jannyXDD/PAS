@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use App\Models\Folder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,8 +29,18 @@ class NoteController extends Controller
             ->withQueryString();
 
         return view('notes.index', compact('notes', 'q'));
-
     }
+
+    public function indexByFolder(Request $request, Folder $folder){
+        $notes = $folder->notes()
+        ->when($request->q, fn($q) => $q->where('title', 'like', '%'.$request->q.'%'))
+        ->orderByDesc('is_pinned')
+        ->latest()
+        ->get();
+
+
+        return view('notes.index', compact('notes', 'folder'));
+        }
 
     public function adminIndex()
     {
@@ -42,8 +53,9 @@ class NoteController extends Controller
      */
     public function create()
     {
-        //
-        return view('notes.create');
+        
+        $folders = Folder::orderBy('name')->get();
+        return view('notes.create', compact('folders'));
     }
 
     /**
@@ -55,7 +67,8 @@ class NoteController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'is_pinned' => 'nullable|boolean'
+            'is_pinned' => 'nullable|boolean',
+            'folder_id' => 'nullable|exists:folders,id'
         ]);
 
         $validated['is_pinned'] = $request->has('is_pinned');
@@ -73,8 +86,10 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
-        //
-        return view('notes.show', compact('note'));
+        return view('notes.show', [
+        'note' => $note,
+        'folders' => $note->user->folders,
+        ]);
     }
 
     /**
@@ -82,8 +97,10 @@ class NoteController extends Controller
      */
     public function edit(Note $note)
     {
-        //
-        return view('notes.edit', compact('note'));
+        return view('notes.edit', [
+        'note' => $note,
+        'folders' => $note->user->folders,
+        ]);
     }
 
     /**
@@ -95,7 +112,8 @@ class NoteController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'is_pinned' => 'nullable|boolean'
+            'is_pinned' => 'nullable|boolean',
+            'folder_id' => 'nullable|exists:folders,id'
         ]);
         
         $validated['is_pinned'] = $request->has('is_pinned');

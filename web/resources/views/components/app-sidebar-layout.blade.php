@@ -1,5 +1,8 @@
 @props(['title' => null])
 @vite(['resources/css/app.css', 'resources/js/app.js'])
+@php
+$folders = auth()->check() ? auth()->user()->folders()->orderBy('name')->get() : collect();
+@endphp
 
 <div class="min-h-screen bg-slate-50">
     <div class="flex">
@@ -19,6 +22,8 @@
 
             <!-- Nav -->
             <nav class="relative z-30 px-3 pb-6 space-y-1">
+
+                <!-- MY NOTES -->
                 <a href="{{ route('notes.index') }}"
                 class="mt-2 flex items-center gap-2 px-3 py-2 rounded-md text-s hover:bg-white/5 transition
                         {{ request()->routeIs('notes.*') ? 'bg-white/10 text-white' : '' }}">
@@ -26,24 +31,103 @@
                     <span>My Notes</span>
                 </a>
 
-                <!-- Exemplo de secção -->
-                @if(auth()->check() && auth()->user()->is_admin)
+                <!-- FOLDERS -->
                 <div class="pt-4">
-                    <p class="px-3 text-sm uppercase tracking-wider text-slate-400">Admin Area</p>
-                    
-                    <a href="{{ route('admin.users.index') }}"
-                       class="mt-2 flex items-center gap-2 px-3 py-2 rounded-md text-s hover:bg-white/5 transition
-                            {{ request()->routeIs('admin.users.*') ? 'bg-white/10 text-white' : '' }}">
-                        <span>👥</span>
-                        <span>Users</span>
-                    </a>
-                 </div>
-                    <a href="{{ route('admin.notes.index') }}"
-                        class="mt-2 flex items-center gap-2 px-3 py-2 rounded-md text-s hover:bg-white/5 transition
-                            {{ request()->routeIs('admin.notes.*') ? 'bg-white/10 text-white' : '' }}">
-                        <span>🗂️</span>
-                        <span>All Notes</span>
-                    </a>
+                    <div class="flex items-center justify-between px-3">
+                        <p class="text-sm uppercase tracking-wider text-slate-400">
+                            Folders
+                        </p>
+
+                        <button
+                            type="button"
+                            class="inline-flex h-7 w-7 items-center justify-center rounded-md
+                                bg-white/10 hover:bg-white/20 transition"
+                            onclick="document.getElementById('newFolderForm').classList.toggle('hidden')"
+                            title="Criar folder"
+                        >
+                            +
+                        </button>
+                    </div>
+
+                    <!-- FORM CREATE FOLDER -->
+                    <div id="newFolderForm" class="hidden px-3 mt-3">
+                        <form method="POST" action="{{ route('folders.store') }}" class="flex gap-2">
+                            @csrf
+
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Nome da folder"
+                                class="w-full rounded-md bg-white/5 border border-white/10
+                                    px-3 py-2 text-sm text-white
+                                    placeholder:text-white/40
+                                    focus:outline-none focus:ring-2 focus:ring-white/20"
+                                maxlength="50"
+                                required
+                            >
+
+                            <button
+                                type="submit"
+                                class="rounded-md bg-white/10 px-3 py-2 text-sm
+                                    text-white hover:bg-white/20 transition"
+                            >
+                                Criar
+                            </button>
+                        </form>
+
+                        @error('name')
+                            <p class="mt-2 text-xs text-red-400">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+
+                    <!-- LIST OF FOLDERS -->
+                    <div class="mt-3 space-y-1">
+                        @forelse($folders as $folder)
+                            <a href="{{ route('folders.show', $folder) }}"
+                            class="flex items-center gap-2 px-3 py-2 rounded-md text-s
+                                    hover:bg-white/5 transition
+                                    {{ request()->routeIs('folders.show')
+                                        && request()->route('folder')?->id === $folder->id
+                                        ? 'bg-white/10 text-white'
+                                        : 'text-white/80' }}">
+                                <span>📁</span>
+                                <span class="truncate">
+                                    {{ $folder->name }}
+                                </span>
+                            </a>
+                        @empty
+                            <p class="px-3 py-2 text-sm text-white/50">
+                                Sem folders
+                            </p>
+                        @endforelse
+                    </div>
+                </div>
+
+                <!-- ADMIN AREA -->
+                @if(auth()->check() && auth()->user()->is_admin)
+                    <div class="pt-6">
+                        <p class="px-3 text-sm uppercase tracking-wider text-slate-400">
+                            Admin Area
+                        </p>
+
+                        <a href="{{ route('admin.users.index') }}"
+                        class="mt-2 flex items-center gap-2 px-3 py-2 rounded-md text-s
+                                hover:bg-white/5 transition
+                                {{ request()->routeIs('admin.users.*') ? 'bg-white/10 text-white' : '' }}">
+                            <span>👥</span>
+                            <span>Users</span>
+                        </a>
+
+                        <a href="{{ route('admin.notes.index') }}"
+                        class="mt-2 flex items-center gap-2 px-3 py-2 rounded-md text-s
+                                hover:bg-white/5 transition
+                                {{ request()->routeIs('admin.notes.*') ? 'bg-white/10 text-white' : '' }}">
+                            <span>🗂️</span>
+                            <span>All Notes</span>
+                        </a>
+                    </div>
                 @endif
             </nav>
         </aside>
