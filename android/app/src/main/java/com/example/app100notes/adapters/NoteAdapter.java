@@ -13,9 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.app100notes.EditNoteActivity;
+import com.example.app100notes.ui.notes.EditNoteActivity;
 import com.example.app100notes.R;
-import com.example.app100notes.ViewHolder;
 import com.example.app100notes.models.Note;
 
 import java.util.List;

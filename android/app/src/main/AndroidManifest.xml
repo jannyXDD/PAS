@@ -15,10 +15,13 @@
         android:theme="@style/Theme.App100Notes"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".ui.user.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.user.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,13 +30,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EditNoteActivity"
+            android:name=".ui.notes.EditNoteActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateNoteActivity"
+            android:name=".ui.notes.CreateNoteActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.notes.MainActivity"
             android:exported="true" />
     </application>
 

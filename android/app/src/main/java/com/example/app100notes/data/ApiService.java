@@ -1,11 +1,14 @@
 package com.example.app100notes.data;
 
-import com.example.app100notes.AuthResponse;
-import com.example.app100notes.LoginRequest;
+import com.example.app100notes.models.AuthResponse;
+import com.example.app100notes.models.LoginRequest;
 import com.example.app100notes.models.Note;
 import com.example.app100notes.models.NoteRequest;
 import com.example.app100notes.models.NoteResponse;
 import com.example.app100notes.models.RegisterRequest;
+import com.example.app100notes.models.User;
+import com.example.app100notes.models.UserRequest;
+import com.example.app100notes.models.UserResponse;
 
 import java.util.List;
 
@@ -33,6 +36,18 @@ public interface ApiService {
 
     @PUT("notes/{id}")
     Call<Note> editNote(@Path("id") int id, @Body NoteRequest body);
+
+    @GET("user/{id}")
+    Call<User>getUserById(@Path("id")int id);
+
+    @GET("me")
+    Call<UserResponse> getMe();
+
+    @PUT("me")
+    Call<Void> updateUser(@Body UserRequest request);
+
+    @POST("auth/logout")
+    Call<Void> logout();
 
     //@GET("manga/{id}")
     //Call<MangaDetailsResponse> getMangaById(@Path("id") int id);
