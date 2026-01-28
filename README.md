@@ -302,14 +302,26 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
    ```bash
    git clone https://github.com/jannyXD/PAS.git
    ```
-3. **Install XAMPP** by downloading and installing it on your system.
-4. **Create the database** by opening phpMyAdmin and creating a database named `BodyBoost`.
-5. **Run migrations** by navigating to `website/bodyboost` and running `cd website/bodyboost && php artisan migrate`.
-6. **Import the database data** from the `bodyboost.sql` file.
-7. **Start the Laravel application** using `php artisan serve`.
-8. **Install Android Studio** on your machine.
+2. **[Install XAMPP](https://www.apachefriends.org/download.html)** by downloading and installing it on your system.
+3. **Create the database** by opening phpMyAdmin and creating a database named `pas`.
+4. **Install frontend dependencies** by running:
+   ```bash
+   npm install
+   ```
+5. **Run migrations:** by running:
+   ```bash
+   php artisan migrate
+   ```
+6. **Run migrations** by running
+   ```bash
+   npm run dev
+   ```
+7. **Start the Laravel application** using
+    ```bash
+   php artisan serve
+    ```
+8. **[Install Android Studio](https://developer.android.com/studio)** on your machine.
 9. **Run the Android application** using the Android Studio emulator.
-
 
 ## Contributing
 
