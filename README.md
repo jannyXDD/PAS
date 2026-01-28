@@ -189,39 +189,39 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
 
 
 - **Authentication**
-- Login & register
-- Secure token storage
-- Persistent session handling
-- Logout
+  - Login & register
+  - Secure token storage
+  - Persistent session handling
+  - Logout
 
 
 - **User profile**
-- Fetch authenticated user data (`/me`)
-- Update profile information
+  - Fetch authenticated user data (`/me`)
+  - Update profile information
 
 
 - **Notes**
-- Display notes in RecyclerView
-- Create and edit notes
-- Real-time sync with API
-- Adapter + ViewHolder pattern
+  - Display notes in RecyclerView
+  - Create and edit notes
+  - Real-time sync with API
+  - Adapter + ViewHolder pattern
 
 
 - **Folders**
-- Fetch user folders
-- View notes by folder
-- Notes without folder remain visible
-- Separation between all notes and folder notes
+  - Fetch user folders
+  - View notes by folder
+  - Notes without folder remain visible
+  - Separation between all notes and folder notes
 
 
 - **Architecture**
-- Retrofit for API communication
-- Clear separation of concerns
-- `ui/notes` – Notes screens
-- `ui/user` – Auth & profile
-- `data` – API & token handling
-- `models` – Request/response models
-- `adapters` – RecyclerView logic
+  - Retrofit for API communication
+  - Clear separation of concerns
+  - `ui/notes` – Notes screens
+  - `ui/user` – Auth & profile
+  - `data` – API & token handling
+  - `models` – Request/response models
+  - `adapters` – RecyclerView logic
 
 ---
 
