@@ -68,6 +68,29 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 ---
 
 
+## 🔌 API Usage Examples
+
+Base URL: http://10.0.2.2:8000/api/
+
+
+All protected endpoints require an **Authorization Bearer Token**.
+
+---
+
+## 🔐 Authentication
+
+### Login
+**POST** `/auth/login`
+
+```json
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+```
+
+---
+
 ## 📱 Android Application
 
 
