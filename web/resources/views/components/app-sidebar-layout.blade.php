@@ -26,11 +26,10 @@ $folders = auth()->check() ? auth()->user()->folders()->orderBy('name')->get() :
                 <!-- MY NOTES -->
                 <a href="{{ route('notes.index') }}"
                 class="mt-2 flex items-center gap-2 px-3 py-2 rounded-md text-s hover:bg-white/5 transition
-                        {{ request()->routeIs('notes.*') ? 'bg-white/10 text-white' : '' }}">
+                {{ request()->routeIs('notes.index') ? 'bg-white/10 text-white' : 'text-white/80' }}">
                     <span>📝</span>
                     <span>My Notes</span>
                 </a>
-
                 <!-- FOLDERS -->
                 <div class="pt-4">
                     <div class="flex items-center justify-between px-3">
@@ -85,18 +84,14 @@ $folders = auth()->check() ? auth()->user()->folders()->orderBy('name')->get() :
                     <!-- LIST OF FOLDERS -->
                     <div class="mt-3 space-y-1">
                         @forelse($folders as $folder)
-                            <a href="{{ route('folders.show', $folder) }}"
-                            class="flex items-center gap-2 px-3 py-2 rounded-md text-s
-                                    hover:bg-white/5 transition
-                                    {{ request()->routeIs('folders.show')
-                                        && request()->route('folder')?->id === $folder->id
-                                        ? 'bg-white/10 text-white'
-                                        : 'text-white/80' }}">
-                                <span>📁</span>
-                                <span class="truncate">
-                                    {{ $folder->name }}
-                                </span>
-                            </a>
+                        <a href="{{ route('notes.byFolder', $folder) }}"
+                        class="flex items-center gap-2 px-3 py-2 rounded-md text-s hover:bg-white/5 transition
+                            {{ request()->routeIs('notes.byFolder') && request()->route('folder')?->id === $folder->id
+                            ? 'bg-white/10 text-white'
+                            : 'text-white/80' }}">
+                            <span>📁</span>
+                            <span class="truncate">{{ $folder->name }}</span>
+                        </a>
                         @empty
                             <p class="px-3 py-2 text-sm text-white/50">
                                 Sem folders

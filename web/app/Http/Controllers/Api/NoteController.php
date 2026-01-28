@@ -11,14 +11,20 @@ class NoteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+   public function index(Request $request)
     {
-        $notes = Note::where('user_id', $request->user()->id)
+        $query = Note::where('user_id', $request->user()->id)
             ->orderByDesc('is_pinned')
-            ->orderByDesc('created_at')
-            ->get();
+            ->orderByDesc('created_at');
 
-        return response()->json($notes, 200);
+
+        if ($request->filled('folder_id')) {
+            $query->where('folder_id', $request->folder_id);
+        }
+
+            $notes = $query->get();
+
+            return response()->json($notes, 200);
     }
 
     /**
@@ -73,6 +79,7 @@ class NoteController extends Controller
         $data = $request->validate([
             'title'     => ['sometimes', 'required', 'string', 'max:255'],
             'content'   => ['nullable', 'string'],
+            'folder_id' => ['nullable', 'integer'],
             'is_pinned' => ['sometimes', 'boolean'],
             
         ]);

@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonLogin;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = editTextViewEmail.getText().toString();
                 String password = editTextViewPassword.getText().toString();
                 if (email.isEmpty() || password.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Fill all fields!", Toast.LENGTH_SHORT).show();
                 } else{
                     ApiService api = RetroFitClient.getRetrofitInstance(LoginActivity.this).create(ApiService.class);
                     Call<AuthResponse> call = api.login(new LoginRequest(email, password));
@@ -54,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                             if (!response.isSuccessful() || response.body() == null || response.body().getToken() == null) {
-                                Toast.makeText(LoginActivity.this, "Login falhou (" + response.code() + ")", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, "Login Failed (" + response.code() + ")", Toast.LENGTH_LONG).show();
                                 return;
                             }
                             TokenManager.saveToken(LoginActivity.this, response.body().getToken());
@@ -65,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<AuthResponse> call, Throwable t) {
-                            Toast.makeText(LoginActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 }

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.App100Notes"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.notes.FoldersActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.user.ProfileActivity"
             android:exported="false" />
         <activity

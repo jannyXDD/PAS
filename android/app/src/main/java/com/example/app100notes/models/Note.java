@@ -21,6 +21,7 @@ public class Note {
 
     //@ForeignKey()
     private int user_id;
+    private Long folder_id;
 
     @SerializedName("created_at")
     private String date_created;
@@ -77,6 +78,15 @@ public class Note {
 
     public void setDate_updated(String date_updated) {
         this.date_updated = date_updated;
+    }
+
+    public Long getFolder_id() {
+        return folder_id;
+    }
+
+
+    public void setFolder_id(Long folder_id) {
+        this.folder_id = folder_id;
     }
 
     private String formatDate(String isoDate) {

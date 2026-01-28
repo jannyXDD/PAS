@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\NoteController;
 use App\Http\Controllers\Api\UserController;
-
+use App\Http\Controllers\Api\FolderController;
 
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
@@ -20,4 +20,6 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::apiResource('notes', NoteController::class)
         ->names('api.notes');
+    Route::apiResource('folders', FolderController::class)
+        ->names('api.folders');
     });

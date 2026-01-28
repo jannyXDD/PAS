@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Top bar -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_id"
         android:layout_width="0dp"
@@ -15,9 +14,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_back"
-        app:title="Criar Nota" />
+        app:title="Create" />
 
-    <!-- Card principal -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardCreate"
         android:layout_width="0dp"
@@ -37,14 +35,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nova nota"
+                android:text="New note"
                 android:textStyle="bold"
                 android:paddingBottom="12dp"/>
-
+            <Spinner
+                android:id="@+id/spinnerFolders_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp"/>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Título">
+                android:hint="Title">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_create_title_id"
@@ -55,7 +57,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Conteúdo"
+                android:hint="Content"
                 android:layout_marginTop="12dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -71,7 +73,7 @@
                 android:id="@+id/check_box_pinned_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fixar nota 📌"
+                android:text="Pin note 📌"
                 android:layout_marginTop="12dp"/>
 
             <LinearLayout
@@ -85,14 +87,14 @@
                     android:id="@+id/button_cancel_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cancelar"
+                    android:text="Cancel"
                     style="@style/Widget.Material3.Button.OutlinedButton"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_create_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Criar"
+                    android:text="Create"
                     android:layout_marginStart="12dp"/>
             </LinearLayout>
 

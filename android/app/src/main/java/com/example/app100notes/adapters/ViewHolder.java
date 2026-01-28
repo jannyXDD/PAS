@@ -12,7 +12,6 @@ import com.example.app100notes.R;
 public class ViewHolder extends RecyclerView.ViewHolder {
     public TextView titleTextView;
     public TextView contentTextView;
-    //public ImageView pinImageView;
     public TextView dateCreatedTextView;
     public TextView dateUpdatedTextView;
     public ImageView pinImageView;

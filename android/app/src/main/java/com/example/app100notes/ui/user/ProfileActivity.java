@@ -102,12 +102,12 @@ public class ProfileActivity extends AppCompatActivity {
         String confirmPass = editTextConfirmNewPassword.getText().toString();
 
         if (name.isEmpty()) {
-            editTextName.setError("Nome obrigatório");
+            editTextName.setError("Must fill the name");
             editTextName.requestFocus();
             return;
         }
         if (email.isEmpty()) {
-            editTextEmail.setError("Email obrigatório");
+            editTextEmail.setError("Must fill the email");
             editTextEmail.requestFocus();
             return;
         }
@@ -117,17 +117,17 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (wantsPasswordChange) {
             if (currentPass.trim().isEmpty()) {
-                editTextCurrentPassword.setError("Insere a password atual");
+                editTextCurrentPassword.setError("Insert your current password");
                 editTextCurrentPassword.requestFocus();
                 return;
             }
             if (newPass.trim().isEmpty()) {
-                editTextNewPassword.setError("Insere a nova password");
+                editTextNewPassword.setError("Insert new password");
                 editTextNewPassword.requestFocus();
                 return;
             }
             if (!newPass.equals(confirmPass)) {
-                editTextConfirmNewPassword.setError("As passwords não coincidem");
+                editTextConfirmNewPassword.setError("Passwords don't match");
                 editTextConfirmNewPassword.requestFocus();
                 return;
             }

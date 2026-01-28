@@ -1,6 +1,7 @@
 package com.example.app100notes.data;
 
 import com.example.app100notes.models.AuthResponse;
+import com.example.app100notes.models.Folder;
 import com.example.app100notes.models.LoginRequest;
 import com.example.app100notes.models.Note;
 import com.example.app100notes.models.NoteRequest;
@@ -15,9 +16,11 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -45,12 +48,14 @@ public interface ApiService {
 
     @PUT("me")
     Call<Void> updateUser(@Body UserRequest request);
-
+    @GET("notes")
+    Call<List<Note>> getNotesByFolder(@Query("folder_id") long folderId);
+    @POST("folders")
+    Call<Folder> createFolder(@Body Folder folder);
     @POST("auth/logout")
     Call<Void> logout();
+    @GET("folders")
+    Call<List<Folder>> getFolders();
 
-    //@GET("manga/{id}")
-    //Call<MangaDetailsResponse> getMangaById(@Path("id") int id);
-    //@GET("manga/{id}/characters")
-   // Call<MangaCharactersResponse> getMangaCharacters(@Path("id") int id);
+
 }

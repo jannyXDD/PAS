@@ -51,6 +51,7 @@ public class NoteAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         holder.itemView.setOnClickListener(v ->{
             Toast.makeText(context, "CLICK: " + note.getTitle(), Toast.LENGTH_SHORT).show();
+
             Intent intent = new Intent(context, EditNoteActivity.class);
             intent.putExtra("notes_id", note.getId());
             intent.putExtra("title", note.getTitle());
@@ -58,7 +59,7 @@ public class NoteAdapter extends RecyclerView.Adapter<ViewHolder> {
             intent.putExtra("is_pinned", note.getIsPinned()); // int 0/1
             intent.putExtra("created_at", note.getDate_created());
             intent.putExtra("updated_at", note.getDate_updated());
-            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("folder_id", note.getFolder_id());
             context.startActivity(intent);
         });
     }

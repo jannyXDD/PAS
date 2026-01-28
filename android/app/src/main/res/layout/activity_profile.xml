@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Toolbar -->
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_profile_id"
         android:layout_width="0dp"
@@ -15,9 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_back"
-        app:title="Editar Perfil" />
+        app:title="Edit Profile" />
 
-    <!-- Scroll -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_edit_profile"
         android:layout_width="0dp"
@@ -34,7 +33,6 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- Card: Dados pessoais -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_personal"
                 android:layout_width="match_parent"
@@ -51,7 +49,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="DADOS PESSOAIS"
+                        android:text="Personal Data"
                         android:textStyle="bold"/>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -59,7 +57,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:hint="Nome">
+                        android:hint="Name">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edit_text_profile_name_id"
@@ -85,7 +83,6 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Card: Segurança -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_security"
                 android:layout_width="match_parent"
@@ -102,7 +99,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SEGURANÇA"
+                        android:text="Security"
                         android:textStyle="bold"/>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -110,7 +107,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:hint="Password atual"
+                        android:hint="Current password"
                         app:endIconMode="password_toggle">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -125,7 +122,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:hint="Nova password"
+                        android:hint="New password"
                         app:endIconMode="password_toggle">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -140,7 +137,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:hint="Confirmar nova password"
+                        android:hint="Confirm new password"
                         app:endIconMode="password_toggle">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -155,13 +152,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:alpha="0.7"
-                        android:text="Se não quiseres alterar a password, deixa estes campos vazios."
+                        android:text="If you don't want to change your password don't fill this fields"
                         android:textSize="12sp"/>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Buttons -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -172,7 +168,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Cancelar"
+                    android:text="Cancel"
                     style="@style/Widget.Material3.Button.OutlinedButton"/>
 
                 <com.google.android.material.button.MaterialButton
@@ -181,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="12dp"
-                    android:text="Guardar alterações"/>
+                    android:text="Save changes"/>
             </LinearLayout>
 
             <Button

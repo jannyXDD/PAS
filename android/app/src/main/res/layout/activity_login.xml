@@ -44,7 +44,7 @@
 
     <Button
         android:id="@+id/button_login_id"
-        android:text="Entrar"
+        android:text="Login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/edit_text_view_password_id"
@@ -54,7 +54,7 @@
 
     <TextView
         android:id="@+id/text_view_register_id"
-        android:text="Não tens conta? Registar"
+        android:text="Don't have an account? click here to register"
         android:textSize="14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

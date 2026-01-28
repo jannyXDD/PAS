@@ -12,7 +12,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Notes100">
@@ -21,15 +20,16 @@
             android:id="@+id/profile_image_id"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_gravity="end"
+            android:layout_gravity="end|center_vertical"
             android:src="@drawable/ic_profile" />
+
     </com.google.android.material.appbar.MaterialToolbar>
 
     <TextView
-        android:id="@+id/tvScreenTitle"
+        android:id="@+id/tvScreenTitleFolders"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="All notes"
+        android:text="Folders"
         android:textSize="20sp"
         android:textStyle="bold"
         android:paddingStart="16dp"
@@ -39,49 +39,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilSearch"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="12dp"
-        app:startIconDrawable="@drawable/ic_search"
-        app:layout_constraintTop_toBottomOf="@id/tvScreenTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_search_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Search by title..." />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_notes_id"
+        android:id="@+id/recycler_view_folders_id"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvScreenTitleFolders"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilSearch" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_button_create_id"
+        android:id="@+id/floating_button_create_folder_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:contentDescription="Create note"
+        android:contentDescription="Create folder"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -93,4 +77,3 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

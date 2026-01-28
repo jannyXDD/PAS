@@ -53,7 +53,6 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
-
     }
 
     private void register() {
@@ -63,22 +62,22 @@ public class RegisterActivity extends AppCompatActivity {
         String confirm = editTextConfirmPassword.getText().toString();
 
         if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
-            Toast.makeText(this, "Preenche todos os campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(this, "Email inválido", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Invalid email", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!password.equals(confirm)) {
-            Toast.makeText(this, "As passwords não coincidem", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Passwords don't match", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (password.length() < 8) {
-            Toast.makeText(this, "Password mínima: 8 caracteres", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Minimum 8 characters", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -88,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (!response.isSuccessful() || response.body() == null || response.body().getToken() == null) {
-                    Toast.makeText(RegisterActivity.this, "Registo falhou (" + response.code() + ")", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Register failed (" + response.code() + ")", Toast.LENGTH_LONG).show();
                     return;
                 }
                 TokenManager.saveToken(RegisterActivity.this, response.body().getToken());
@@ -99,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<AuthResponse> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 
