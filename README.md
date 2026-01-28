@@ -75,8 +75,6 @@ Base URL: http://10.0.2.2:8000/api/
 
 All protected endpoints require an **Authorization Bearer Token**.
 
----
-
 ## 🔐 Authentication
 
 ### Login
@@ -88,6 +86,60 @@ All protected endpoints require an **Authorization Bearer Token**.
   "password": "password123"
 }
 ```
+
+### Notes
+### Get all notes
+**GET** `/notes`
+
+### Get notes by folder
+**GET** `/notes?folder_id=2`
+
+### Get specific note
+**GET** `/notes/{id}`
+
+### Create a note
+**POST** `/notes`
+
+```json
+{
+  "title": "My Note",
+  "content": "This is the note content",
+  "is_pinned": true,
+  "folder_id": 2
+}
+```
+
+### Edit a note
+**PUT** `/notes/{id}`
+
+```json
+{
+  "title": "Updated title",
+  "content": "Updated content",
+  "is_pinned": false,
+  "folder_id": null
+}
+```
+### Get folders
+**GET** `/folders`
+
+```json
+{
+  "name": "Work"
+}
+```
+
+### Create a folder
+**POST** `/folders`
+
+```json
+{
+  "name": "Work"
+}
+```
+
+**GET** `/notes/{id}`
+
 
 ---
 
