@@ -3,9 +3,9 @@
 ## Introduction
 
 This project is a web-based notes management application developed using the Laravel framework.
-Its main goal is to demonstrate the implementation of a CRUD system (Create, Read, Update, Delete), user authentication, and role-based access control in a structured and maintainable way.
+Its main goal is to demonstrate the implementation of a CRUD system (Create, Read, Update, Delete), user authentication, and role-based access control and content organization using folders in a structured way.
 
-The application allows authenticated users to manage their own notes, while administrators have access to additional management features.
+The application allows authenticated users to manage their own notes and optionally organizing them into folders while administrators have access to additional management features.
 
 ## 🚀 Features
 
@@ -17,42 +17,37 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 
 ## 🗄️ Database Design
 
-<img width="475" height="307" alt="image" src="https://github.com/user-attachments/assets/abf6822b-c082-44b6-83f0-16112c701283" />
+
+<img width="803" height="764" alt="image" src="https://github.com/user-attachments/assets/88efe405-81ae-4d78-9e34-887302ab1b8c" />
+
 
 ---
 
 ## 🌐 Web Application (Laravel)
 
 
-### Authentication & Authorization
-- User authentication (login & logout)
-- Token-based authentication using Laravel Sanctum
-- Role-based access control (Admin / Regular User)
+- **Authentication & authorization**
+  - Login / logout
+  - Role-based access (Admin / User)
 
+- **Notes management**
+  - Create, edit, delete and view notes
+  - Pinned notes
+  - Notes with or without folders
 
-### Notes Management
-- Create notes
-- Edit notes
-- Delete notes
-- View note details
-- Notes are associated with authenticated users
-- Support for pinned notes (displayed at the top)
+- **Folder management**
+  - User folders
+  - Assign notes to folders
+  - View notes by folder
 
+- **Admin dashboard**
+  - User management
+  - Global notes management
 
-### Admin Panel
-- Admin-only access
-- View all users
-- View all notes from all users
-- Delete notes created by any user
-- Manage users (list & details)
-
-
-### User Experience
-- Responsive UI built with **Blade + Tailwind CSS**
-- Clean dashboard layout
-- Pagination for notes and users
-- Search functionality (users / notes)
-- Inline edit forms where applicable
+- **UI & UX**
+  - Responsive interface (Blade + Tailwind CSS)
+  - Dashboard layout
+  - Search and pagination
 
 
 ---
@@ -73,42 +68,160 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 ---
 
 
+## 🔌 API Usage Examples
+
+Base URL: http://10.0.2.2:8000/api/
+
+
+All protected endpoints require an **Authorization Bearer Token**.
+
+## 🔐 Authentication
+
+### Register
+**POST** `/auth/register`
+
+```json
+{
+  "name": "John Doe",
+  "email": "user@example.com",
+  "password": "password123",
+  "password_confirmation": "password123"
+}
+```
+
+### Login
+**POST** `/auth/login`
+
+```json
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+```
+
+### Logout
+
+Headers
+
+```html
+Authorization: Bearer {token}
+```
+
+### 👤 User
+**GET** `/me`
+
+Response
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "email": "user@example.com"
+}
+```
+
+**PUT** `me`
+```json
+{
+  "name": "John Updated",
+  "email": "updated@example.com"
+}
+```
+
+### 📝 Notes
+### Get all notes
+**GET** `/notes`
+
+### Get notes by folder
+**GET** `/notes?folder_id=2`
+
+### Get specific note
+**GET** `/notes/{id}`
+
+### Create a note
+**POST** `/notes`
+
+```json
+{
+  "title": "My Note",
+  "content": "This is the note content",
+  "is_pinned": true,
+  "folder_id": 2
+}
+```
+
+### Edit a note
+**PUT** `/notes/{id}`
+
+```json
+{
+  "title": "Updated title",
+  "content": "Updated content",
+  "is_pinned": false,
+  "folder_id": null
+}
+```
+### Get folders
+**GET** `/folders`
+
+```json
+{
+  "name": "Work"
+}
+```
+
+### Create a folder
+**POST** `/folders`
+
+```json
+{
+  "name": "Work"
+}
+```
+
+
+
+---
+
 ## 📱 Android Application
 
 
-The Android app consumes the Laravel API and mirrors the main web functionalities for a normal user on mobile.
+The Android app consumes the Laravel API and mirrors the main web functionalities for a regular user.
 
 
-### Authentication
-- User **Login**
-- User **Register**
-- Secure token storage using a TokenManager
-- Persistent session handling
-- Logout functionality
+- **Authentication**
+  - Login & register
+  - Secure token storage
+  - Persistent session handling
+  - Logout
 
 
-### User Profile
-- Fetch authenticated user data (`/me`)
-- Update user profile information
+- **User profile**
+  - Fetch authenticated user data (`/me`)
+  - Update profile information
 
 
-### Notes
-- Fetch and display notes in a RecyclerView
-- Create new notes
-- Edit existing notes
-- Notes synced in real time with the API
-- Adapter + ViewHolder pattern for efficient UI rendering
+- **Notes**
+  - Display notes in RecyclerView
+  - Create and edit notes
+  - Real-time sync with API
+  - Adapter + ViewHolder pattern
 
 
-### Architecture & Structure
-- Retrofit for API communication
-- Clear separation of concerns:
-- `ui/notes` – Notes screens
-- `ui/user` – Authentication & profile
-- `data` – API & token handling
-- `models` – Request/response models
-- `adapters` – RecyclerView logic
+- **Folders**
+  - Fetch user folders
+  - View notes by folder
+  - Notes without folder remain visible
+  - Separation between all notes and folder notes
 
+
+- **Architecture**
+  - Retrofit for API communication
+  - Clear separation of concerns
+  - `ui/notes` – Notes screens
+  - `ui/user` – Auth & profile
+  - `data` – API & token handling
+  - `models` – Request/response models
+  - `adapters` – RecyclerView logic
 
 ---
 
@@ -140,101 +253,75 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
 
 ## 🛣️ Project Roadmap
 
+### 🔧 Backend (Laravel)
+- [x] Base project structure
+- [x] Authentication with Sanctum
+- [x] User model
+- [x] Folder model
+- [x] Note model
+- [x] Relationships (User → Folders → Notes)
+- [x] Notes CRUD
+- [x] Folders CRUD
+- [x] Protected routes with middleware
+- [x] API endpoints
 
-This roadmap describes the main development phases of the project, from initial setup to the final mobile integration, which we had to re-do.
+### 🌐 Web Application
+- [x] Notes management UI
+- [x] Folder navigation
+- [x] Pinned notes
+- [x] Search & pagination
+- [] Admin dashboard
+- [] TailwindCSS styling
 
+### 📱 Android Application
+- [x] Project setup
+- [x] Retrofit configuration
+- [x] Authentication flow
+- [x] Notes list (RecyclerView)
+- [x] Folder navigation
+- [x] Create & edit notes
+- [x] Profile screen
+- [x] Token persistence
+- [x] Logout
 
----
+### 🔗 Integration & Testing
+- [x] Postman API tests
+- [x] Web ↔ API integration
+- [x] Android ↔ API integration
+- [ ] Error handling improvements
 
-
-### Phase 1 – Project Foundation
-- Laravel project initialization
-- Default authentication scaffolding setup
-- Environment configuration (.env, database, migrations)
-- Base project structure definition
-
-
----
-
-
-### Phase 2 – Database & Models
-- User model configuration
-- Notes model creation
-- Database migrations for notes
-- Relationship setup between users and notes
-
-
----
-
-
-### Phase 3 – Web Application Development
-- Notes CRUD implementation (create, read, update, delete)
-- User-based note ownership
-- Notes listing and detail views
-- Pinned notes functionality
-- Pagination and search
-- Admin dashboard creation
-- Admin access control (role-based)
-
-
----
-
-
-### Phase 4 – REST API Development
-- API routes definition
-- Authentication with Laravel Sanctum
-- User registration endpoint
-- User login endpoint
-- Logout endpoint
-- Protected routes using `auth:sanctum`
-- Notes CRUD via API
-- `/me` endpoint for authenticated user data
+### 📄 Documentation
+- [ ] README final version
+- [ ] API documentation
 
 
----
 
+## ⚙️ Installation and Setup
 
-### Phase 5 – Android Application Development
-- Android studio project setup
-- Retrofit configuration
-- API service definition
-- Notes list (RecyclerView + Adapter)
-- Create Note functionality
-- Edit Note functionality
-- Login and Register screens
-- Token storage and session handling
-- Profile screen with user data update
-- Logout handling
-
-
----
-
-
-### Phase 6 – Integration & Testing
-- Web - API integration testing
-- Android - API integration testing
-- Postman testing for all endpoints
-- Authentication flow validation
-- Error handling improvements
-
-
----
-
-
-### Phase 7 – UI & UX Improvements
-- Web UI refinement with Tailwind CSS
-- Mobile UI adjustments and layout consistency
-- Usability improvements across platforms
-
-
----
-
-
-### Phase 8 – Documentation & Delivery
-- README documentation
-- Feature listing
-- Roadmap documentation
-- Final project review and cleanup
+1. **Clone the repository** using
+   ```bash
+   git clone https://github.com/jannyXD/PAS.git
+   ```
+2. **[Install XAMPP](https://www.apachefriends.org/download.html)** by downloading and installing it on your system.
+3. **Create the database** by opening phpMyAdmin and creating a database named `pas`.
+4. **Install frontend dependencies** by running:
+   ```bash
+   npm install
+   ```
+5. **Run migrations:** by running:
+   ```bash
+   php artisan migrate
+   ```
+6. **Run migrations** by running
+   ```bash
+   npm run dev
+   ```
+7. **Start the Laravel application** using
+    ```bash
+   php artisan serve
+    ```
+8. **[Install Android Studio](https://developer.android.com/studio)** on your machine.
+9. **Run the Android application** using the Android Studio emulator.
 
 ## Contributing
 
@@ -249,4 +336,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 - João Daniel - [https://github.com/jannyXDD](https://github.com/jannyXDD)
 - João Filipe - [https://github.com/IAmVoid13](https://github.com/IAmVoid13)
-- Project Link: [https://github.com/jannyXDD/PAS](https://github.com/jannyXDD/PAS)
+Project Link: [https://github.com/jannyXDD/PAS](https://github.com/jannyXDD/PAS)
