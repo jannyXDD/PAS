@@ -3,9 +3,9 @@
 ## Introduction
 
 This project is a web-based notes management application developed using the Laravel framework.
-Its main goal is to demonstrate the implementation of a CRUD system (Create, Read, Update, Delete), user authentication, and role-based access control in a structured and maintainable way.
+Its main goal is to demonstrate the implementation of a CRUD system (Create, Read, Update, Delete), user authentication, and role-based access control and content organization using folders in a structured way.
 
-The application allows authenticated users to manage their own notes, while administrators have access to additional management features.
+The application allows authenticated users to manage their own notes and optionally organizing them into folders while administrators have access to additional management features.
 
 ## 🚀 Features
 
@@ -17,7 +17,8 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 
 ## 🗄️ Database Design
 
-<img width="475" height="307" alt="image" src="https://github.com/user-attachments/assets/abf6822b-c082-44b6-83f0-16112c701283" />
+<img width="803" height="764" alt="image" src="https://github.com/user-attachments/assets/88efe405-81ae-4d78-9e34-887302ab1b8c" />
+
 
 ---
 
@@ -37,7 +38,17 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 - View note details
 - Notes are associated with authenticated users
 - Support for pinned notes (displayed at the top)
+- Notes can exist with or without a folder
 
+
+### Folder Management
+
+- Create folders per user
+- View all folders owned by the authenticated user
+- Assign notes to folders (optional)
+- View notes inside a specific folder
+- Notes without a folder are still accessible in the main notes list
+- Folder ownership is enforced per user
 
 ### Admin Panel
 - Admin-only access
@@ -98,6 +109,15 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
 - Edit existing notes
 - Notes synced in real time with the API
 - Adapter + ViewHolder pattern for efficient UI rendering
+
+### Folders
+
+- Fetch user folders from API
+- View notes inside a selected folder
+- Notes without folder remain visible in the main notes list
+- Clean separation between:
+  - All Notes
+  - Folder-specific Notes
 
 
 ### Architecture & Structure
@@ -160,22 +180,26 @@ This roadmap describes the main development phases of the project, from initial 
 ### Phase 2 – Database & Models
 - User model configuration
 - Notes model creation
-- Database migrations for notes
-- Relationship setup between users and notes
+- Folders model creation
+- Database migrations for notes and folders
+- Relationship setup:
+  - User → Notes
+  - User → Folders
+  - Folder → Notes
 
 
 ---
 
 
 ### Phase 3 – Web Application Development
-- Notes CRUD implementation (create, read, update, delete)
-- User-based note ownership
-- Notes listing and detail views
+- Notes CRUD implementation
+- Folder CRUD implementation
+- User-based ownership enforcement
+- Notes listing by folder
 - Pinned notes functionality
 - Pagination and search
 - Admin dashboard creation
 - Admin access control (role-based)
-
 
 ---
 
@@ -199,6 +223,7 @@ This roadmap describes the main development phases of the project, from initial 
 - Retrofit configuration
 - API service definition
 - Notes list (RecyclerView + Adapter)
+- Folder Navigation
 - Create Note functionality
 - Edit Note functionality
 - Login and Register screens
@@ -249,4 +274,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 - João Daniel - [https://github.com/jannyXDD](https://github.com/jannyXDD)
 - João Filipe - [https://github.com/IAmVoid13](https://github.com/IAmVoid13)
-- Project Link: [https://github.com/jannyXDD/PAS](https://github.com/jannyXDD/PAS)
+Project Link: [https://github.com/jannyXDD/PAS](https://github.com/jannyXDD/PAS)
