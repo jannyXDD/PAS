@@ -294,6 +294,23 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
 - [ ] README final version
 - [ ] API documentation
 
+
+
+## ⚙️ Installation and Setup
+
+1. **Clone the repository** using
+   ```bash
+   git clone https://github.com/jannyXD/PAS.git
+   ```
+3. **Install XAMPP** by downloading and installing it on your system.
+4. **Create the database** by opening phpMyAdmin and creating a database named `BodyBoost`.
+5. **Run migrations** by navigating to `website/bodyboost` and running `cd website/bodyboost && php artisan migrate`.
+6. **Import the database data** from the `bodyboost.sql` file.
+7. **Start the Laravel application** using `php artisan serve`.
+8. **Install Android Studio** on your machine.
+9. **Run the Android application** using the Android Studio emulator.
+
+
 ## Contributing
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
