@@ -17,6 +17,7 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 
 ## 🗄️ Database Design
 
+
 <img width="803" height="764" alt="image" src="https://github.com/user-attachments/assets/88efe405-81ae-4d78-9e34-887302ab1b8c" />
 
 
@@ -25,45 +26,28 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 ## 🌐 Web Application (Laravel)
 
 
-### Authentication & Authorization
-- User authentication (login & logout)
-- Token-based authentication using Laravel Sanctum
-- Role-based access control (Admin / Regular User)
+- **Authentication & authorization**
+  - Login / logout
+  - Role-based access (Admin / User)
 
+- **Notes management**
+  - Create, edit, delete and view notes
+  - Pinned notes
+  - Notes with or without folders
 
-### Notes Management
-- Create notes
-- Edit notes
-- Delete notes
-- View note details
-- Notes are associated with authenticated users
-- Support for pinned notes (displayed at the top)
-- Notes can exist with or without a folder
+- **Folder management**
+  - User folders
+  - Assign notes to folders
+  - View notes by folder
 
+- **Admin dashboard**
+  - User management
+  - Global notes management
 
-### Folder Management
-
-- Create folders per user
-- View all folders owned by the authenticated user
-- Assign notes to folders (optional)
-- View notes inside a specific folder
-- Notes without a folder are still accessible in the main notes list
-- Folder ownership is enforced per user
-
-### Admin Panel
-- Admin-only access
-- View all users
-- View all notes from all users
-- Delete notes created by any user
-- Manage users (list & details)
-
-
-### User Experience
-- Responsive UI built with **Blade + Tailwind CSS**
-- Clean dashboard layout
-- Pagination for notes and users
-- Search functionality (users / notes)
-- Inline edit forms where applicable
+- **UI & UX**
+  - Responsive interface (Blade + Tailwind CSS)
+  - Dashboard layout
+  - Search and pagination
 
 
 ---
@@ -87,48 +71,43 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 ## 📱 Android Application
 
 
-The Android app consumes the Laravel API and mirrors the main web functionalities for a normal user on mobile.
+The Android app consumes the Laravel API and mirrors the main web functionalities for a regular user.
 
 
-### Authentication
-- User **Login**
-- User **Register**
-- Secure token storage using a TokenManager
+- **Authentication**
+- Login & register
+- Secure token storage
 - Persistent session handling
-- Logout functionality
+- Logout
 
 
-### User Profile
+- **User profile**
 - Fetch authenticated user data (`/me`)
-- Update user profile information
+- Update profile information
 
 
-### Notes
-- Fetch and display notes in a RecyclerView
-- Create new notes
-- Edit existing notes
-- Notes synced in real time with the API
-- Adapter + ViewHolder pattern for efficient UI rendering
-
-### Folders
-
-- Fetch user folders from API
-- View notes inside a selected folder
-- Notes without folder remain visible in the main notes list
-- Clean separation between:
-  - All Notes
-  - Folder-specific Notes
+- **Notes**
+- Display notes in RecyclerView
+- Create and edit notes
+- Real-time sync with API
+- Adapter + ViewHolder pattern
 
 
-### Architecture & Structure
+- **Folders**
+- Fetch user folders
+- View notes by folder
+- Notes without folder remain visible
+- Separation between all notes and folder notes
+
+
+- **Architecture**
 - Retrofit for API communication
-- Clear separation of concerns:
+- Clear separation of concerns
 - `ui/notes` – Notes screens
-- `ui/user` – Authentication & profile
+- `ui/user` – Auth & profile
 - `data` – API & token handling
 - `models` – Request/response models
 - `adapters` – RecyclerView logic
-
 
 ---
 
@@ -160,106 +139,46 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
 
 ## 🛣️ Project Roadmap
 
+### 🔧 Backend (Laravel)
+- [x] Base project structure
+- [x] Authentication with Sanctum
+- [x] User model
+- [x] Folder model
+- [x] Note model
+- [x] Relationships (User → Folders → Notes)
+- [x] Notes CRUD
+- [x] Folders CRUD
+- [x] Protected routes with middleware
+- [x] API endpoints
 
-This roadmap describes the main development phases of the project, from initial setup to the final mobile integration, which we had to re-do.
+### 🌐 Web Application
+- [x] Notes management UI
+- [x] Folder navigation
+- [x] Pinned notes
+- [x] Search & pagination
+- [] Admin dashboard
+- [] TailwindCSS styling
 
+### 📱 Android Application
+- [x] Project setup
+- [x] Retrofit configuration
+- [x] Authentication flow
+- [x] Notes list (RecyclerView)
+- [x] Folder navigation
+- [x] Create & edit notes
+- [x] Profile screen
+- [x] Token persistence
+- [x] Logout
 
----
+### 🔗 Integration & Testing
+- [x] Postman API tests
+- [x] Web ↔ API integration
+- [x] Android ↔ API integration
+- [ ] Error handling improvements
 
-
-### Phase 1 – Project Foundation
-- Laravel project initialization
-- Default authentication scaffolding setup
-- Environment configuration (.env, database, migrations)
-- Base project structure definition
-
-
----
-
-
-### Phase 2 – Database & Models
-- User model configuration
-- Notes model creation
-- Folders model creation
-- Database migrations for notes and folders
-- Relationship setup:
-  - User → Notes
-  - User → Folders
-  - Folder → Notes
-
-
----
-
-
-### Phase 3 – Web Application Development
-- Notes CRUD implementation
-- Folder CRUD implementation
-- User-based ownership enforcement
-- Notes listing by folder
-- Pinned notes functionality
-- Pagination and search
-- Admin dashboard creation
-- Admin access control (role-based)
-
----
-
-
-### Phase 4 – REST API Development
-- API routes definition
-- Authentication with Laravel Sanctum
-- User registration endpoint
-- User login endpoint
-- Logout endpoint
-- Protected routes using `auth:sanctum`
-- Notes CRUD via API
-- `/me` endpoint for authenticated user data
-
-
----
-
-
-### Phase 5 – Android Application Development
-- Android studio project setup
-- Retrofit configuration
-- API service definition
-- Notes list (RecyclerView + Adapter)
-- Folder Navigation
-- Create Note functionality
-- Edit Note functionality
-- Login and Register screens
-- Token storage and session handling
-- Profile screen with user data update
-- Logout handling
-
-
----
-
-
-### Phase 6 – Integration & Testing
-- Web - API integration testing
-- Android - API integration testing
-- Postman testing for all endpoints
-- Authentication flow validation
-- Error handling improvements
-
-
----
-
-
-### Phase 7 – UI & UX Improvements
-- Web UI refinement with Tailwind CSS
-- Mobile UI adjustments and layout consistency
-- Usability improvements across platforms
-
-
----
-
-
-### Phase 8 – Documentation & Delivery
-- README documentation
-- Feature listing
-- Roadmap documentation
-- Final project review and cleanup
+### 📄 Documentation
+- [ ] README final version
+- [ ] API documentation
 
 ## Contributing
 
