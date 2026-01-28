@@ -77,6 +77,18 @@ All protected endpoints require an **Authorization Bearer Token**.
 
 ## 🔐 Authentication
 
+### Register
+**POST** `/auth/register`
+
+```json
+{
+  "name": "John Doe",
+  "email": "user@example.com",
+  "password": "password123",
+  "password_confirmation": "password123"
+}
+```
+
 ### Login
 **POST** `/auth/login`
 
@@ -87,7 +99,35 @@ All protected endpoints require an **Authorization Bearer Token**.
 }
 ```
 
-### Notes
+### Logout
+
+Headers
+
+```html
+Authorization: Bearer {token}
+```
+
+### 👤 User
+**GET** `/me`
+
+Response
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "email": "user@example.com"
+}
+```
+
+**PUT** `me`
+```json
+{
+  "name": "John Updated",
+  "email": "updated@example.com"
+}
+```
+
+### 📝 Notes
 ### Get all notes
 **GET** `/notes`
 
@@ -138,7 +178,6 @@ All protected endpoints require an **Authorization Bearer Token**.
 }
 ```
 
-**GET** `/notes/{id}`
 
 
 ---
