@@ -270,8 +270,8 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
 - [x] Folder navigation
 - [x] Pinned notes
 - [x] Search & pagination
-- [] Admin dashboard
-- [] TailwindCSS styling
+- [x] Admin dashboard
+- [x] TailwindCSS styling
 
 ### 📱 Android Application
 - [x] Project setup
@@ -291,8 +291,8 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
 - [ ] Error handling improvements
 
 ### 📄 Documentation
-- [ ] README final version
-- [ ] API documentation
+- [x] README final version
+- [x] API documentation
 
 
 
@@ -302,8 +302,10 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
    ```bash
    git clone https://github.com/jannyXD/PAS.git
    ```
-2. **[Install XAMPP](https://www.apachefriends.org/download.html)** by downloading and installing it on your system.
+2. **[Install XAMPP](https://www.apachefriends.org/download.html)** and start the **Apache** and **MySQL** services.
+   
 3. **Create the database** by opening phpMyAdmin and creating a database named `pas`.
+   
 4. **Install frontend dependencies** by running:
    ```bash
    npm install
@@ -336,4 +338,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 - João Daniel - [https://github.com/jannyXDD](https://github.com/jannyXDD)
 - João Filipe - [https://github.com/IAmVoid13](https://github.com/IAmVoid13)
+
 Project Link: [https://github.com/jannyXDD/PAS](https://github.com/jannyXDD/PAS)
