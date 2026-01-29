@@ -54,7 +54,6 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_create_note);
 
-
         folderNames.add("No folder");
 
         spinnerFolders = findViewById(R.id.spinnerFolders_id);

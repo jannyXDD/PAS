@@ -32,13 +32,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-        toolbar.setNavigationOnClickListener(v -> finish());
-
         editTextName = findViewById(R.id.edit_text_register_name_id);
         editTextEmail = findViewById(R.id.edit_text_register_email_id);
         editTextPassword = findViewById(R.id.edit_text_register_password_id);

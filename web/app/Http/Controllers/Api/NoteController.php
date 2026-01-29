@@ -42,12 +42,15 @@ class NoteController extends Controller
                 'title' => ['required', 'string', 'max:255'],
                 'content' => ['nullable', 'string'],
                 'is_pinned' => ['boolean'],
+                'folder_id' => 'nullable|exists:folders,id',
+
          ]);
 
             $note = Note::create([
             'user_id' => $user->id,
             'title' => $data['title'],
             'content' => $data['content'] ?? null,
+            'folder_id' => $data['folder_id'] ?? null,
             'is_pinned' => $data['is_pinned'] ?? false,
          ]);
         return response()->json($note, 201);
