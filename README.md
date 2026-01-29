@@ -325,25 +325,33 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
 2. **[Install XAMPP](https://www.apachefriends.org/download.html)** and start the **Apache** and **MySQL** services.
    
 3. **Create the database** by opening phpMyAdmin and creating a database named `pas`.
-   
-4. **Install frontend dependencies** by running:
+4. **Install dependencies** by running:
+    ```bash
+   composer install
+   ```
+5. **Generate application key** by running:
+   ```bash
+   php artisan key:generate
+   ```
+
+6. **Install frontend dependencies** by running:
    ```bash
    npm install
    ```
-5. **Run migrations:** by running:
+7. **Run database migrations** by running:
    ```bash
    php artisan migrate
    ```
-6. **Run migrations** by running
+8. **Build frontend assets** by running
    ```bash
    npm run dev
    ```
-7. **Start the Laravel application** using
+9. **Start the Laravel application** using
     ```bash
-   php artisan serve
+    php artisan serve
     ```
-8. **[Install Android Studio](https://developer.android.com/studio)** on your machine.
-9. **Run the Android application** using the Android Studio emulator.
+10. **[Install Android Studio](https://developer.android.com/studio)** on your machine.
+11. **Run the Android application** using the Android Studio emulator.
 
 ## Contributing
 
