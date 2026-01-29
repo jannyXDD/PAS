@@ -58,7 +58,6 @@ public class EditNoteActivity extends AppCompatActivity {
         textViewCreatedAt = findViewById(R.id.text_view_note_date_created_id);
         textViewUpdatedAt = findViewById(R.id.text_view_note_date_updated_id);
         spinnerFolders = findViewById(R.id.spinnerFolders_id);
-        spinnerFolders = findViewById(R.id.spinnerFolders_id);
         Button buttonDelete = findViewById(R.id.button_delete_note_id);
 
 
@@ -83,6 +82,7 @@ public class EditNoteActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> {
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         });
 

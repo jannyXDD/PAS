@@ -47,7 +47,7 @@
 
                         <select name="folder_id"
                             class="w-full rounded-lg text-gray-600 border-slate-300 focus:border-indigo-500 focus:ring-indigo-500">
-                            <option value="">— Sem pasta —</option>
+                            <option value="">— No folder —</option>
 
                             @foreach($folders as $folder)
                                 <option value="{{ $folder->id }}"
@@ -86,7 +86,7 @@
                                {{ $note->is_pinned ? 'checked' : '' }}
                                class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
                         <span class="text-sm text-slate-700">
-                            Fixar nota 📌
+                            Pin note 📌
                         </span>
                     </label>
 

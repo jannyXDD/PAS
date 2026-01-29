@@ -230,7 +230,7 @@ public class FoldersActivity extends AppCompatActivity {
     private void showDeleteFolderDialog(Folder folder, int position) {
         new AlertDialog.Builder(this)
                 .setTitle("Delete folder")
-                .setMessage("Continue?")
+                .setMessage("The notes inside of this folder won't be deleted. Are you sure you want to delete this folder?")
                 .setPositiveButton("Delete",
                         (d, w) -> deleteFolder(folder.getId(), position))
                 .setNegativeButton("Cancel", null)
@@ -259,14 +259,14 @@ public class FoldersActivity extends AppCompatActivity {
 
     private void renameFolder(Folder folder, String newName, int position) {
 
-        Folder body = new Folder(newName); // tem de ter campo name no model
+        Folder body = new Folder(newName);
 
         apiService.updateFolder(folder.getId(), body).enqueue(new Callback<Folder>() {
             @Override
             public void onResponse(Call<Folder> call, Response<Folder> response) {
                 if (response.isSuccessful() && response.body() != null) {
 
-                    folder.setName(response.body().getName()); // ou folder.setName(newName);
+                    folder.setName(response.body().getName());
                     adapter.notifyItemChanged(position);
                     loadFolders();
 

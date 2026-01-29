@@ -4,8 +4,8 @@
 
             {{-- Title --}}
             <div class="mb-6">
-                <h1 class="text-2xl font-semibold text-gray-800">Criar Nota</h1>
-                <p class="text-sm text-gray-500">Cria uma nova nota</p>
+                <h1 class="text-2xl font-semibold text-gray-800">Create Note</h1>
+                <p class="text-sm text-gray-500">Create a new note</p>
             </div>
 
             {{-- Card --}}
@@ -14,15 +14,15 @@
                 <form action="{{ route('notes.store') }}" method="POST" class="p-6 space-y-6">
                     @csrf
 
-                    {{-- Pasta --}}
+                    {{-- Folder --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">
-                            Pasta
+                            Folder
                         </label>
 
                         <select name="folder_id"
                             class="w-full rounded-md text-gray-600 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
-                            <option value="">— Sem pasta —</option>
+                            <option value="">— No folder —</option>
 
                             @foreach($folders as $folder)
                                 <option value="{{ $folder->id }}"
@@ -33,37 +33,37 @@
                         </select>
                     </div>
 
-                    {{-- Título --}}
+                    {{-- Title --}}
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
                         <input type="text" name="title" value="{{ old('title') }}"
                             class="w-full rounded-md text-gray-600 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
 
-                    {{-- Conteúdo --}}
+                    {{-- Content --}}
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Conteúdo</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Content</label>
                         <textarea name="content" rows="6"
                             class="w-full rounded-md text-gray-600 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">{{ old('content') }}</textarea>
                     </div>
 
-                    {{-- Fixar --}}
+                    {{-- Pin --}}
                     <div class="flex items-center gap-2">
                         <input type="checkbox" name="is_pinned" value="1"
                             {{ old('is_pinned') ? 'checked' : '' }}
                             class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                        <label class="text-sm text-gray-700">Fixar nota 📌</label>
+                        <label class="text-sm text-gray-700">Pin note📌</label>
                     </div>
 
                     {{-- Form actions --}}
                     <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
                         <a href="{{ route('notes.index') }}"
                             class="px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100 transition">
-                            Cancelar
+                            Cancel
                         </a>
                         <button type="submit"
                             class="px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700 transition">
-                            Criar Nota
+                            Create Note
                         </button>
                     </div>
                 </form>

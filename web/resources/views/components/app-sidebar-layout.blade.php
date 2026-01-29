@@ -56,7 +56,7 @@ $folders = auth()->check() ? auth()->user()->folders()->orderBy('name')->get() :
                             <input
                                 type="text"
                                 name="name"
-                                placeholder="Nome da folder"
+                                placeholder="Folder name"
                                 class="w-full rounded-md bg-white/5 border border-white/10
                                     px-3 py-2 text-sm text-white
                                     placeholder:text-white/40
@@ -70,7 +70,7 @@ $folders = auth()->check() ? auth()->user()->folders()->orderBy('name')->get() :
                                 class="rounded-md bg-white/10 px-3 py-2 text-sm
                                     text-white hover:bg-white/20 transition"
                             >
-                                Criar
+                                Create
                             </button>
                         </form>
 
