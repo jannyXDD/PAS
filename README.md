@@ -1,11 +1,13 @@
+<p align="center">
+<img width="256" height="256"
+src="https://github.com/user-attachments/assets/4622eeee-3076-4edd-9c70-b27e3b69bd52" />
+</p>
 
-# Notes100
-## Introduction
+<h2>Introduction</h2>
 
-This project is a web-based notes management application developed using the Laravel framework.
-Its main goal is to demonstrate the implementation of a CRUD system (Create, Read, Update, Delete), user authentication, and role-based access control and content organization using folders in a structured way.
+100Notes is a cross-platform notes management application composed of a Laravel-based web application and an Android mobile app, both consuming the same REST API.
 
-The application allows authenticated users to manage their own notes and optionally organizing them into folders while administrators have access to additional management features.
+The project showcases CRUD operations, authentication, role-based access control, and folder-based content organization, allowing users to manage their notes across multiple platforms.
 
 ## 🚀 Features
 
@@ -288,7 +290,7 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
 - [x] Postman API tests
 - [x] Web ↔ API integration
 - [x] Android ↔ API integration
-- [ ] Error handling improvements
+- [x] Error handling improvements
 
 ### 📄 Documentation
 - [x] README final version
