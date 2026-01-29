@@ -55,7 +55,7 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 ---
 
 
-## RESTful API 
+## 🌐 RESTful API 
 
 
 - User registration endpoint
@@ -65,9 +65,6 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 - CRUD operations for notes
 - Token-based authentication for mobile and external clients
 - Protected routes using `auth:sanctum`
-
-
----
 
 
 ## 🔌 API Usage Examples
