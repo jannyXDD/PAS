@@ -329,29 +329,35 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
     ```bash
    composer install
    ```
-5. **Generate application key** by running:
+
+5. **Create the environment file** by running:
+   ```bash
+   cp .env.example .env
+   ```
+   
+6. **Generate application key** by running:
    ```bash
    php artisan key:generate
    ```
 
-6. **Install frontend dependencies** by running:
+7. **Install frontend dependencies** by running:
    ```bash
    npm install
    ```
-7. **Run database migrations** by running:
+8. **Run database migrations** by running:
    ```bash
-   php artisan migrate
+   php artisan migrate:fresh
    ```
-8. **Build frontend assets** by running
+9. **Build frontend assets** by running
    ```bash
    npm run dev
    ```
-9. **Start the Laravel application** using
+10. **Start the Laravel application** using
     ```bash
     php artisan serve
     ```
-10. **[Install Android Studio](https://developer.android.com/studio)** on your machine.
-11. **Run the Android application** using the Android Studio emulator.
+11. **[Install Android Studio](https://developer.android.com/studio)** on your machine.
+12. **Run the Android application** using the Android Studio emulator.
 
 ## Contributing
 
