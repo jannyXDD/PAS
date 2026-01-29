@@ -69,8 +69,8 @@ This project consists of a **Laravel Web Application**, a **REST API**, and an *
 
 ## 🔌 API Usage Examples
 
-Base URL: http://10.0.2.2:8000/api/
 
+Base URL: http://10.0.2.2:8000/api/
 
 All protected endpoints require an **Authorization Bearer Token**.
 
@@ -106,7 +106,8 @@ Headers
 Authorization: Bearer {token}
 ```
 
-### 👤 User
+## 👤 User
+
 **GET** `/me`
 
 Response
@@ -118,7 +119,7 @@ Response
 }
 ```
 
-**PUT** `me`
+**PUT** `/me`
 ```json
 {
   "name": "John Updated",
@@ -126,7 +127,8 @@ Response
 }
 ```
 
-### 📝 Notes
+## 📝 Notes
+
 ### Get all notes
 **GET** `/notes`
 
@@ -143,7 +145,7 @@ Response
 {
   "title": "My Note",
   "content": "This is the note content",
-  "is_pinned": true,
+  "is_pinned": 1,
   "folder_id": 2
 }
 ```
@@ -155,7 +157,7 @@ Response
 {
   "title": "Updated title",
   "content": "Updated content",
-  "is_pinned": false,
+  "is_pinned": 0,
   "folder_id": null
 }
 ```
@@ -168,6 +170,8 @@ Response
 }
 ```
 
+## 📁 Folders
+
 ### Create a folder
 **POST** `/folders`
 
@@ -177,7 +181,23 @@ Response
 }
 ```
 
+### Rename a folder
+**PUT** `/folders/{id}`
 
+```json
+{
+  "name": "Personal"
+}
+```
+
+### Delete a folder
+**DELETE** `/folders/{id}`
+
+```json
+{
+  "name": "Work"
+}
+```
 
 ---
 
@@ -201,7 +221,7 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
 
 - **Notes**
   - Display notes in RecyclerView
-  - Create and edit notes
+  - Create, edit and delete notes
   - Real-time sync with API
   - Adapter + ViewHolder pattern
 
@@ -210,7 +230,8 @@ The Android app consumes the Laravel API and mirrors the main web functionalitie
   - Fetch user folders
   - View notes by folder
   - Notes without folder remain visible
-  - Separation between all notes and folder notes
+  - Real-time sync with API
+  - Create, edit, and delete notes
 
 
 - **Architecture**
