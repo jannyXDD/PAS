@@ -119,7 +119,7 @@ Response
 }
 ```
 
-**PUT** `me`
+**PUT** `/me`
 ```json
 {
   "name": "John Updated",
@@ -145,7 +145,7 @@ Response
 {
   "title": "My Note",
   "content": "This is the note content",
-  "is_pinned": true,
+  "is_pinned": 1,
   "folder_id": 2
 }
 ```
@@ -157,7 +157,7 @@ Response
 {
   "title": "Updated title",
   "content": "Updated content",
-  "is_pinned": false,
+  "is_pinned": 0,
   "folder_id": null
 }
 ```
@@ -186,7 +186,7 @@ Response
 
 ```json
 {
-  "name": "Persoanl"
+  "name": "Personal"
 }
 ```
 
