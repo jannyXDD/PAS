@@ -42,7 +42,7 @@ $folders = auth()->check() ? auth()->user()->folders()->orderBy('name')->get() :
                             class="inline-flex h-7 w-7 items-center justify-center rounded-md
                                 bg-white/10 hover:bg-white/20 transition"
                             onclick="document.getElementById('newFolderForm').classList.toggle('hidden')"
-                            title="Criar folder"
+                            title="Create Folder"
                         >
                             +
                         </button>
@@ -94,7 +94,7 @@ $folders = auth()->check() ? auth()->user()->folders()->orderBy('name')->get() :
                         </a>
                         @empty
                             <p class="px-3 py-2 text-sm text-white/50">
-                                Sem folders
+                                No folders yet
                             </p>
                         @endforelse
                     </div>

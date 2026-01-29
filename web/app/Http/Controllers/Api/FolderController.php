@@ -51,14 +51,29 @@ class FolderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+            $data = $request->validate([
+        'name' => 'required|string|max:255',
+        ]);
+
+        $folder = Folder::where('id', $id)
+            ->where('user_id', $request->user()->id)
+            ->firstOrFail();
+
+        $folder->update(['name' => $data['name']]);
+
+        return response()->json($folder, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy(Request $request, string $id)    {
+         $folder = Folder::where('id', $id)
+        ->where('user_id', $request->user()->id)
+        ->firstOrFail();
+
+        $folder->delete();
+
+        return response()->json(['message' => 'Folder deleted'], 200);
     }
 }

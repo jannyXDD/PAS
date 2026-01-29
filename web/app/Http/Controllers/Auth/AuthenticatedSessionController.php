@@ -28,8 +28,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('notes.index', absolute: false));
-    }
+        return redirect()->route('notes.index');
+        }
 
     /**
      * Destroy an authenticated session.

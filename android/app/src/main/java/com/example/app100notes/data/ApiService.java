@@ -15,6 +15,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -52,6 +53,15 @@ public interface ApiService {
     Call<List<Note>> getNotesByFolder(@Query("folder_id") long folderId);
     @POST("folders")
     Call<Folder> createFolder(@Body Folder folder);
+
+    @DELETE("folders/{id}")
+    Call<Void> deleteFolder(@Path("id") long folderId);
+
+    @DELETE("notes/{id}")
+    Call<Void> deleteNote(@Path("id") int noteId);
+
+    @PUT("folders/{id}")
+    Call<Folder> updateFolder(@Path("id") long id, @Body Folder folder);
     @POST("auth/logout")
     Call<Void> logout();
     @GET("folders")

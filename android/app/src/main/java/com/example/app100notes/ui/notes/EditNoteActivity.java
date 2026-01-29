@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app100notes.R;
@@ -58,6 +59,8 @@ public class EditNoteActivity extends AppCompatActivity {
         textViewUpdatedAt = findViewById(R.id.text_view_note_date_updated_id);
         spinnerFolders = findViewById(R.id.spinnerFolders_id);
         spinnerFolders = findViewById(R.id.spinnerFolders_id);
+        Button buttonDelete = findViewById(R.id.button_delete_note_id);
+
 
         folderNames.clear();
         folderNames.add("Sem pasta");
@@ -74,7 +77,6 @@ public class EditNoteActivity extends AppCompatActivity {
             long fid = getIntent().getLongExtra("folder_id", -1);
             currentFolderId = (fid == -1) ? null : fid;
         }
-
         loadFolders();
         toolbar = findViewById(R.id.toolbar_id);
         setSupportActionBar(toolbar);
@@ -90,6 +92,15 @@ public class EditNoteActivity extends AppCompatActivity {
             finish();
             return;
         }
+
+        buttonDelete.setOnClickListener(v -> {
+            new AlertDialog.Builder(EditNoteActivity.this)
+                    .setTitle("Delete note")
+                    .setMessage("Are you sure you want to delete this note?")
+                    .setPositiveButton("Delete", (d, w) -> deleteNote(noteId))
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        });
         String title = getIntent().getStringExtra("title");
         String content = getIntent().getStringExtra("content");
         int pinned = getIntent().getIntExtra("is_pinned", 0);
@@ -194,5 +205,36 @@ public class EditNoteActivity extends AppCompatActivity {
             }
         });
     }
+    private void deleteNote(int noteId) {
+        apiService.deleteNote(noteId).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(EditNoteActivity.this,
+                            "Note deleted",
+                            Toast.LENGTH_SHORT).show();
 
+                    Intent intent = new Intent(EditNoteActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    String msg = "Delete error HTTP " + response.code();
+                    try {
+                        if (response.errorBody() != null) msg += " - " + response.errorBody().string();
+                    } catch (Exception ignored) {}
+                    Toast.makeText(EditNoteActivity.this, msg, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(EditNoteActivity.this,
+                        "Delete fail: " + t.getMessage(),
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }
+
+
