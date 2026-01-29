@@ -134,7 +134,7 @@ $folders = auth()->check() ? auth()->user()->folders()->orderBy('name')->get() :
             <header class="h-16 flex items-center justify-between px-6 bg-slate-700 text-white divide-y divide-white/10">
                 <div class="flex items-center gap-3">
                     @if($title)
-                        <h1 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $title }}</h1>
+                        <h1 class="text-lg font-semibold text-white">{{ $title }}</h1>
                     @endif
                 </div>
 
